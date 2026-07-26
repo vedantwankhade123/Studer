@@ -16,24 +16,45 @@ export const TimetableView = () => {
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+  const firstCourse = courses[0] || { name: 'Computer Science', code: 'CS-101', subjects: [] };
+  const firstSubject = firstCourse.subjects?.[0] || { name: 'Core Subject Lecture', code: 'CS-GEN' };
+
   const [formData, setFormData] = useState({
-    courseName: courses[0]?.name || 'Computer Science',
-    courseCode: courses[0]?.code || 'CS-101',
+    courseName: firstCourse.name,
+    courseCode: firstCourse.code,
+    subjectName: firstSubject.name,
+    subjectCode: firstSubject.code,
     day: 'Monday',
     startTime: '09:00 AM',
     endTime: '10:30 AM',
     room: 'Lab 101',
-    instructor: 'Dr. A. Sharma',
-    lectureTitle: 'Core Subject Lecture',
+    instructor: firstSubject.instructor || 'Faculty Member',
   });
 
   const handleCourseChange = (selectedName) => {
     const courseObj = courses.find(c => c.name === selectedName);
+    const availableSubjects = courseObj?.subjects || [];
+    const subObj = availableSubjects[0] || { name: 'Core Subject Lecture', code: courseObj?.code || 'GEN' };
+
     setFormData({
       ...formData,
       courseName: selectedName,
       courseCode: courseObj ? courseObj.code : 'CS-101',
-      instructor: courseObj ? courseObj.instructor : 'Faculty Member',
+      subjectName: subObj.name,
+      subjectCode: subObj.code,
+      instructor: subObj.instructor || 'Faculty Member',
+    });
+  };
+
+  const handleSubjectChange = (selectedSubjectName) => {
+    const courseObj = courses.find(c => c.name === formData.courseName);
+    const subObj = courseObj?.subjects?.find(s => s.name === selectedSubjectName);
+
+    setFormData({
+      ...formData,
+      subjectName: selectedSubjectName,
+      subjectCode: subObj ? subObj.code : formData.courseCode,
+      instructor: subObj?.instructor || formData.instructor,
     });
   };
 
@@ -41,17 +62,21 @@ export const TimetableView = () => {
     e.preventDefault();
     dispatch(addTimetableEntry({
       ...formData,
+      lectureTitle: formData.subjectName,
       date: new Date().toISOString().split('T')[0],
     }));
     dispatch(closeAddTimetableModal());
   };
+
+  const currentSelectedCourseObj = courses.find(c => c.name === formData.courseName);
+  const currentCourseSubjects = currentSelectedCourseObj?.subjects || [];
 
   return (
     <div className="timetable-view-container">
       <div className="view-header flex-between">
         <div>
           <h2>Class Timetable & Lecture Schedule</h2>
-          <p>Create weekly course schedules and inspect class timetable slots.</p>
+          <p>Create weekly course schedules using registered subjects and inspect timetable slots.</p>
         </div>
 
         <button className="btn btn-primary" onClick={() => dispatch(openAddTimetableModal())}>
@@ -81,9 +106,8 @@ export const TimetableView = () => {
                         <Clock size={12} />
                         <span>{item.startTime} - {item.endTime}</span>
                       </div>
-                      <h5>{item.courseName}</h5>
-                      <span className="tt-code">{item.courseCode}</span>
-                      <p className="tt-topic">{item.lectureTitle}</p>
+                      <h5>{item.subjectName || item.lectureTitle}</h5>
+                      <span className="tt-code">{item.courseName} ({item.subjectCode || item.courseCode})</span>
                       
                       <div className="tt-meta-row">
                         <span><MapPin size={12} /> {item.room}</span>
@@ -132,6 +156,22 @@ export const TimetableView = () => {
                 </div>
 
                 <div className="form-group">
+                  <label>Select Subject inside Course *</label>
+                  {currentCourseSubjects.length === 0 ? (
+                    <input type="text" disabled value="No Subjects in Course (Add Subjects in Courses Tab)" />
+                  ) : (
+                    <select
+                      value={formData.subjectName}
+                      onChange={(e) => handleSubjectChange(e.target.value)}
+                    >
+                      {currentCourseSubjects.map(s => (
+                        <option key={s.id} value={s.name}>{s.name} ({s.code})</option>
+                      ))}
+                    </select>
+                  )}
+                </div>
+
+                <div className="form-group">
                   <label>Day of Week *</label>
                   <select
                     value={formData.day}
@@ -173,7 +213,7 @@ export const TimetableView = () => {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group full-width">
                   <label>Instructor Name</label>
                   <input
                     type="text"
@@ -182,16 +222,6 @@ export const TimetableView = () => {
                     onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
                   />
                 </div>
-              </div>
-
-              <div className="form-group full-width">
-                <label>Lecture Topic / Description</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Advanced Data Structures & Algorithm Complexity"
-                  value={formData.lectureTitle}
-                  onChange={(e) => setFormData({ ...formData, lectureTitle: e.target.value })}
-                />
               </div>
 
               <div className="modal-footer">
