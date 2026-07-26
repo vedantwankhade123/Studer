@@ -49,7 +49,7 @@ export function App() {
           <div className="dashboard-content-canvas">
             <div className="content-left-column">
               <div className="top-banner-row">
-                <HeroBanner />
+                <HeroBanner currentUser={currentUser} />
                 <StatsCards />
               </div>
 

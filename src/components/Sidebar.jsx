@@ -17,7 +17,7 @@ export const Sidebar = ({ activeTab, setActiveTab, onSignOut }) => {
         {/* Brand Header */}
         <div className="sidebar-brand">
           <div className="brand-logo-box">
-            <BookOpen size={17} />
+            <BookOpen size={20} />
           </div>
           <div className="brand-text">
             <h2>Studer</h2>
