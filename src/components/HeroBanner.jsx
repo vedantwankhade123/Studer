@@ -10,7 +10,7 @@ export const HeroBanner = () => {
     <div className="hero-banner">
       <div className="hero-content">
         <h2>Hello Sarah! <Sparkles size={20} className="sparkle-icon" /></h2>
-        <p>Welcome to Studer Student Management Portal. Manage student records, track course schedules, and inspect lecture attendance seamlessly.</p>
+        <p>Welcome to Studer student management portal. Manage students, create courses, create timetables, and manage attendance.</p>
         <button className="hero-cta-btn" onClick={() => dispatch(openAddModal())}>
           <UserPlus size={16} />
           <span>Add New Student</span>
