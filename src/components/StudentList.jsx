@@ -1,61 +1,114 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { StudentCard } from './StudentCard';
-import { openAddModal, clearFilters } from '../features/students/studentsSlice';
-import { UserX, Plus } from 'lucide-react';
+import { openAddModal, openEditModal, openDetailModal, deleteStudent } from '../features/students/studentsSlice';
+import { UserX, Plus, Edit2, Trash2, Eye } from 'lucide-react';
 
 export const StudentList = () => {
   const dispatch = useDispatch();
+  const students = useSelector((state) => state.students.list);
+  const search = useSelector((state) => state.students.filters.search);
+  const statusFilter = useSelector((state) => state.students.filters.status);
+  const courseFilter = useSelector((state) => state.students.filters.course);
 
-  const { list, searchQuery, courseFilter, statusFilter } = useSelector((state) => state.students);
-
-  const filteredStudents = list.filter((student) => {
+  // Filter Logic
+  const filteredStudents = students.filter((stu) => {
     const matchesSearch = 
-      student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.rollNo.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.course.toLowerCase().includes(searchQuery.toLowerCase());
+      stu.name.toLowerCase().includes(search.toLowerCase()) ||
+      stu.rollNumber.toLowerCase().includes(search.toLowerCase()) ||
+      stu.email.toLowerCase().includes(search.toLowerCase()) ||
+      stu.course.toLowerCase().includes(search.toLowerCase());
 
-    const matchesCourse = courseFilter === 'All' || student.course === courseFilter;
-    const matchesStatus = statusFilter === 'All' || student.status === statusFilter;
+    const matchesStatus = statusFilter === 'All' || stu.status === statusFilter;
+    const matchesCourse = courseFilter === 'All' || stu.course === courseFilter;
 
-    return matchesSearch && matchesCourse && matchesStatus;
+    return matchesSearch && matchesStatus && matchesCourse;
   });
 
   if (filteredStudents.length === 0) {
     return (
-      <div className="empty-state">
-        <div className="empty-icon">
-          <UserX size={36} />
-        </div>
-        <h3>No student found</h3>
-        <div className="empty-actions">
-          {(searchQuery || courseFilter !== 'All' || statusFilter !== 'All') ? (
-            <button className="btn btn-secondary" onClick={() => dispatch(clearFilters())}>
-              Clear Filters
-            </button>
-          ) : (
+      <div className="empty-state-container">
+        <div className="empty-state">
+          <div className="empty-icon">
+            <UserX size={44} />
+          </div>
+          <h3>No student found</h3>
+          <div className="empty-actions">
             <button className="btn btn-primary" onClick={() => dispatch(openAddModal())}>
-              <Plus size={16} /> Add First Student
+              <Plus size={16} />
+              <span>Add First Student</span>
             </button>
-          )}
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="student-list-wrapper">
-      <div className="section-header">
-        <h3>Top Students <span className="count-badge">{filteredStudents.length}</span></h3>
-        <span className="info-text">Showing {filteredStudents.length} of {list.length} total</span>
-      </div>
+    <div className="students-rows-view">
+      {filteredStudents.map((stu, index) => (
+        <div 
+          key={stu.id} 
+          className="student-row-item"
+          onClick={() => dispatch(openDetailModal(stu))}
+        >
+          <span className="row-index">{(index + 1).toString().padStart(2, '0')}</span>
 
-      <div className="students-rows-view">
-        {filteredStudents.map((student, idx) => (
-          <StudentCard key={student.id} student={student} viewMode="list" index={idx} />
-        ))}
-      </div>
+          <div className="row-avatar-box">
+            {stu.photoUrl ? (
+              <img src={stu.photoUrl} alt={stu.name} className="row-avatar-img" />
+            ) : (
+              <div className="avatar-initials">{stu.name.charAt(0)}</div>
+            )}
+          </div>
+
+          <div className="row-info-main">
+            <h4>{stu.name}</h4>
+            <p>
+              <span className="roll-pill">{stu.rollNumber}</span>
+              <span>•</span>
+              <span>{stu.course}</span>
+              <span>•</span>
+              <span>Year {stu.academicYear || 1}</span>
+            </p>
+          </div>
+
+          <div className="row-stats-group">
+            <span className={`badge-status badge-${stu.status.toLowerCase()}`}>
+              {stu.status}
+            </span>
+
+            <div className="row-actions" onClick={(e) => e.stopPropagation()}>
+              <button 
+                className="icon-btn btn-view"
+                onClick={() => dispatch(openDetailModal(stu))}
+                title="View Full Profile"
+              >
+                <Eye size={15} />
+              </button>
+
+              <button 
+                className="icon-btn btn-edit"
+                onClick={() => dispatch(openEditModal(stu))}
+                title="Edit Record"
+              >
+                <Edit2 size={15} />
+              </button>
+
+              <button 
+                className="icon-btn btn-delete"
+                onClick={() => {
+                  if (window.confirm(`Are you sure you want to delete ${stu.name}?`)) {
+                    dispatch(deleteStudent(stu.id));
+                  }
+                }}
+                title="Delete Record"
+              >
+                <Trash2 size={15} />
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
