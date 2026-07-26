@@ -6,7 +6,7 @@ import {
   openAddTimetableModal, 
   closeAddTimetableModal 
 } from '../features/timetable/timetableSlice';
-import { CalendarCheck, Plus, Clock, User, Trash2, X, CheckCircle } from 'lucide-react';
+import { Plus, Clock, User, Trash2, X, CheckCircle } from 'lucide-react';
 
 export const TimetableView = () => {
   const dispatch = useDispatch();
@@ -73,15 +73,12 @@ export const TimetableView = () => {
   return (
     <div className="timetable-view-container">
       <div className="view-header flex-between">
-        <div>
-          <h2>Class Timetable & Lecture Schedule</h2>
-          <p>Create weekly course schedules using registered subjects and inspect timetable slots.</p>
+        <div className="header-btn-group">
+          <button className="btn btn-primary" onClick={() => dispatch(openAddTimetableModal())}>
+            <Plus size={16} />
+            <span>Schedule New Lecture</span>
+          </button>
         </div>
-
-        <button className="btn btn-primary" onClick={() => dispatch(openAddTimetableModal())}>
-          <Plus size={16} />
-          <span>Schedule New Lecture</span>
-        </button>
       </div>
 
       <div className="timetable-days-grid">
