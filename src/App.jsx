@@ -20,8 +20,16 @@ export function App() {
     return saved !== null ? JSON.parse(saved) : true;
   });
 
-  const handleSignIn = () => {
+  const [currentUser, setCurrentUser] = useState(() => {
+    const saved = localStorage.getItem('studer_current_user');
+    return saved ? JSON.parse(saved) : { fullName: 'Vedant Wankhade', email: 'admin@studer.com' };
+  });
+
+  const handleSignIn = (userData) => {
+    const userToSave = userData || { fullName: 'Vedant Wankhade', email: 'admin@studer.com' };
     localStorage.setItem('studer_auth', JSON.stringify(true));
+    localStorage.setItem('studer_current_user', JSON.stringify(userToSave));
+    setCurrentUser(userToSave);
     setIsAuthenticated(true);
   };
 
@@ -98,7 +106,7 @@ export function App() {
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onSignOut={handleSignOut} />
 
       <div className="dashboard-main-area">
-        <Navbar activeTab={activeTab} />
+        <Navbar activeTab={activeTab} currentUser={currentUser} />
         {renderTabContent()}
       </div>
 

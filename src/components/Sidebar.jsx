@@ -1,5 +1,6 @@
 import React from 'react';
 import { LayoutDashboard, Users, BookOpen, Clock, Settings, LogOut } from 'lucide-react';
+import sheryiansLogo from '../assets/sheryians-logo.png';
 
 export const Sidebar = ({ activeTab, setActiveTab, onSignOut }) => {
   const navItems = [
@@ -21,6 +22,8 @@ export const Sidebar = ({ activeTab, setActiveTab, onSignOut }) => {
           <div className="brand-text">
             <h2>Studer</h2>
           </div>
+          <span className="brand-divider">✕</span>
+          <img src={sheryiansLogo} alt="Sheryians Logo" className="sheryians-logo-img" />
         </div>
 
         {/* Navigation Items */}

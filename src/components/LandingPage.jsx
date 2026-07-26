@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BookOpen, Users, Clock, ArrowRight } from 'lucide-react';
+import sheryiansLogo from '../assets/sheryians-logo.png';
+import { AuthModal } from './AuthModal';
 
 export const LandingPage = ({ onSignIn }) => {
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState('signin');
+
+  const openAuth = (mode = 'signin') => {
+    setAuthMode(mode);
+    setIsAuthOpen(true);
+  };
+
   return (
     <div className="landing-page-container">
       {/* Landing Header */}
@@ -11,8 +21,10 @@ export const LandingPage = ({ onSignIn }) => {
             <BookOpen size={22} />
           </div>
           <h2>Studer</h2>
+          <span className="brand-divider">✕</span>
+          <img src={sheryiansLogo} alt="Sheryians Logo" className="sheryians-logo-img" />
         </div>
-        <button className="btn btn-primary" onClick={onSignIn}>
+        <button className="btn btn-primary" onClick={() => openAuth('signin')}>
           <span>Sign In</span>
           <ArrowRight size={16} />
         </button>
@@ -22,11 +34,11 @@ export const LandingPage = ({ onSignIn }) => {
       <main className="landing-hero-section">
         <h1 className="landing-title">
           Smart Academic Management,<br />
-          Simplified for Students, Courses & Schedules.
+          Simplified for Everyone.
         </h1>
 
         <div className="landing-cta-group">
-          <button className="btn btn-hero-primary" onClick={onSignIn}>
+          <button className="btn btn-hero-primary" onClick={() => openAuth('signin')}>
             <span>Sign In</span>
             <ArrowRight size={18} />
           </button>
@@ -38,7 +50,7 @@ export const LandingPage = ({ onSignIn }) => {
             <div className="pill-icon">
               <Users size={18} />
             </div>
-            <span>Student Directory</span>
+            <span>Manage Students</span>
           </div>
 
           <div className="feature-pill lavender-pill">
@@ -57,10 +69,16 @@ export const LandingPage = ({ onSignIn }) => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="landing-footer">
-        <p>© {new Date().getFullYear()} Studer Management System. All rights reserved.</p>
-      </footer>
+      {/* Authentication Popup Modal */}
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+        onSuccess={(user) => {
+          setIsAuthOpen(false);
+          onSignIn(user);
+        }}
+        defaultMode={authMode}
+      />
     </div>
   );
 };

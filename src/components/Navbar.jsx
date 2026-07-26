@@ -1,17 +1,20 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 
-export const Navbar = ({ activeTab }) => {
+export const Navbar = ({ activeTab, currentUser }) => {
   const getPageTitle = () => {
     switch (activeTab) {
       case 'dashboard': return 'Dashboard';
-      case 'students': return 'Student Directory';
+      case 'students': return 'Manage Students';
       case 'courses': return 'Courses & Curriculum';
       case 'timetable': return 'Class Timetable';
       case 'settings': return 'Settings';
       default: return 'Dashboard';
     }
   };
+
+  const displayName = currentUser?.fullName || 'Admin User';
+  const initial = displayName.charAt(0).toUpperCase();
 
   return (
     <header className="top-navbar">
@@ -22,9 +25,9 @@ export const Navbar = ({ activeTab }) => {
       <div className="header-actions">
         <div className="user-profile-pill">
           <div className="user-avatar">
-            <span>V</span>
+            <span>{initial}</span>
           </div>
-          <span className="user-name">Vedant Wankhade</span>
+          <span className="user-name">{displayName}</span>
           <ChevronDown size={14} className="dropdown-arrow" />
         </div>
       </div>
