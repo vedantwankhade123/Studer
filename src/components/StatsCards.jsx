@@ -1,16 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Users, UserCheck, Star } from 'lucide-react';
+import { Users, UserCheck, GraduationCap } from 'lucide-react';
 
 export const StatsCards = () => {
   const students = useSelector((state) => state.students.list);
 
   const totalStudents = students.length;
   const activeStudents = students.filter((s) => s.status === 'Active').length;
-  
-  const avgGpa = totalStudents > 0 
-    ? (students.reduce((acc, curr) => acc + (parseFloat(curr.gpa) || 0), 0) / totalStudents).toFixed(2) 
-    : '0.00';
+  const graduatedStudents = students.filter((s) => s.status === 'Graduated').length;
 
   return (
     <div className="stats-column">
@@ -36,11 +33,11 @@ export const StatsCards = () => {
 
       <div className="stat-card pink-card">
         <div className="stat-card-icon">
-          <Star size={20} />
+          <GraduationCap size={20} />
         </div>
         <div className="stat-card-data">
-          <h3>{avgGpa}</h3>
-          <span>Average GPA</span>
+          <h3>{graduatedStudents}</h3>
+          <span>Graduated Alumni</span>
         </div>
       </div>
     </div>

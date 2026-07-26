@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCourseFilter } from '../features/students/studentsSlice';
 import { openAddCourseModal, closeAddCourseModal, addCourse as createCourseAction, deleteCourse } from '../features/courses/coursesSlice';
-import { BookOpen, Users, Star, ArrowRight, Plus, Trash2, X, CheckCircle, Code, Database, Cpu, Laptop, Radio } from 'lucide-react';
+import { BookOpen, Users, ArrowRight, Plus, Trash2, X, CheckCircle } from 'lucide-react';
 
 export const CoursesView = ({ setActiveTab }) => {
   const dispatch = useDispatch();
@@ -66,9 +66,6 @@ export const CoursesView = ({ setActiveTab }) => {
         {coursesList.map((course) => {
           const enrolled = students.filter(s => s.course === course.name);
           const count = enrolled.length;
-          const avgGpa = count > 0 
-            ? (enrolled.reduce((acc, curr) => acc + (parseFloat(curr.gpa) || 0), 0) / count).toFixed(2)
-            : 'N/A';
 
           return (
             <div key={course.id} className="course-card">
@@ -80,16 +77,11 @@ export const CoursesView = ({ setActiveTab }) => {
               </div>
 
               <h3>{course.name}</h3>
-              <p className="course-desc">Instructor: <strong>{course.instructor || 'Unassigned'}</strong> • {course.department}</p>
 
               <div className="course-stats-row">
                 <div className="c-stat">
                   <Users size={14} />
-                  <span><strong>{count}</strong> Students</span>
-                </div>
-                <div className="c-stat">
-                  <Star size={14} className="star-icon" />
-                  <span>Avg GPA: <strong>{avgGpa}</strong></span>
+                  <span><strong>{count}</strong> Enrolled Students</span>
                 </div>
               </div>
 
@@ -98,7 +90,7 @@ export const CoursesView = ({ setActiveTab }) => {
                   className="btn-view-students"
                   onClick={() => handleSelectCourse(course.name)}
                 >
-                  <span>Inspect Enrolled</span>
+                  <span>View Enrolled Students</span>
                   <ArrowRight size={14} />
                 </button>
 

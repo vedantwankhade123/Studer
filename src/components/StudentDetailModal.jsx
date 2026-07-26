@@ -5,7 +5,7 @@ import {
   openEditModal, 
   deleteStudent 
 } from '../features/students/studentsSlice';
-import { X, Mail, Phone, Calendar, BookOpen, Star, Edit3, Trash2, ShieldCheck } from 'lucide-react';
+import { X, Mail, Phone, Calendar, Edit3, Trash2 } from 'lucide-react';
 
 export const StudentDetailModal = () => {
   const dispatch = useDispatch();
@@ -84,14 +84,6 @@ export const StudentDetailModal = () => {
           </div>
 
           <div className="detail-card">
-            <div className="detail-card-icon icon-gold"><Star size={18} /></div>
-            <div className="detail-card-info">
-              <span className="label">Cumulative GPA</span>
-              <span className="value gpa-highlight">{selectedStudent.gpa} / 4.0</span>
-            </div>
-          </div>
-
-          <div className="detail-card">
             <div className="detail-card-icon icon-purple"><Calendar size={18} /></div>
             <div className="detail-card-info">
               <span className="label">Enrollment Date</span>
@@ -99,13 +91,6 @@ export const StudentDetailModal = () => {
             </div>
           </div>
         </div>
-
-        {selectedStudent.bio && (
-          <div className="detail-bio-box">
-            <h4><BookOpen size={16} /> Academic Bio & Notes</h4>
-            <p>{selectedStudent.bio}</p>
-          </div>
-        )}
 
         <div className="modal-footer">
           <button className="btn btn-secondary" onClick={handleClose}>

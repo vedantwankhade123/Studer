@@ -23,9 +23,7 @@ export const StudentModal = () => {
     course: 'Computer Science',
     year: '1st Year',
     rollNo: '',
-    gpa: '3.50',
     status: 'Active',
-    bio: '',
     avatar: '',
   });
 
@@ -40,9 +38,7 @@ export const StudentModal = () => {
         course: editingStudent.course || 'Computer Science',
         year: editingStudent.year || '1st Year',
         rollNo: editingStudent.rollNo || '',
-        gpa: editingStudent.gpa || '3.50',
         status: editingStudent.status || 'Active',
-        bio: editingStudent.bio || '',
         avatar: editingStudent.avatar || '',
       });
     } else {
@@ -53,9 +49,7 @@ export const StudentModal = () => {
         course: 'Computer Science',
         year: '1st Year',
         rollNo: `CS${new Date().getFullYear()}-${Math.floor(10 + Math.random() * 90)}`,
-        gpa: '3.80',
         status: 'Active',
-        bio: '',
         avatar: '',
       });
     }
@@ -82,9 +76,6 @@ export const StudentModal = () => {
     }
     if (!formData.rollNo.trim()) newErrors.rollNo = 'Roll Number is required';
     if (!formData.course) newErrors.course = 'Course selection is required';
-    if (!formData.gpa || isNaN(formData.gpa) || formData.gpa < 0 || formData.gpa > 4.0) {
-      newErrors.gpa = 'GPA must be between 0.0 and 4.0';
-    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -188,21 +179,6 @@ export const StudentModal = () => {
             </div>
 
             <div className="form-group">
-              <label>GPA (0.0 - 4.0) *</label>
-              <input
-                type="number"
-                step="0.01"
-                min="0"
-                max="4.0"
-                placeholder="e.g. 3.85"
-                value={formData.gpa}
-                onChange={(e) => setFormData({ ...formData, gpa: e.target.value })}
-                className={errors.gpa ? 'input-error' : ''}
-              />
-              {errors.gpa && <span className="error-message"><AlertCircle size={12} /> {errors.gpa}</span>}
-            </div>
-
-            <div className="form-group">
               <label>Enrollment Status *</label>
               <select
                 value={formData.status}
@@ -222,16 +198,6 @@ export const StudentModal = () => {
               placeholder="https://example.com/photo.jpg (Leave blank for auto-generated avatar)"
               value={formData.avatar}
               onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
-            />
-          </div>
-
-          <div className="form-group full-width">
-            <label>Bio / Remarks</label>
-            <textarea
-              rows="3"
-              placeholder="Brief description, academic focus, or special notes..."
-              value={formData.bio}
-              onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
             />
           </div>
 

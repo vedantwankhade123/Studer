@@ -5,7 +5,7 @@ import {
   openEditModal, 
   openDetailModal 
 } from '../features/students/studentsSlice';
-import { Eye, Edit3, Trash2, Mail, BookOpen, Star } from 'lucide-react';
+import { Eye, Edit3, Trash2, Mail, BookOpen } from 'lucide-react';
 
 export const StudentCard = ({ student, viewMode, index }) => {
   const dispatch = useDispatch();
@@ -68,11 +68,6 @@ export const StudentCard = ({ student, viewMode, index }) => {
         </div>
 
         <div className="row-stats-group">
-          <div className="stat-pill gpa-pill">
-            <Star size={13} className="star-icon" />
-            <span>{student.gpa}</span>
-          </div>
-
           <div className="stat-pill status-pill">
             <span className={getStatusBadgeClass(student.status)}>{student.status}</span>
           </div>
@@ -116,10 +111,7 @@ export const StudentCard = ({ student, viewMode, index }) => {
         </div>
 
         <div className="card-footer-info">
-          <span className="gpa-badge">
-            <Star size={14} className="star-icon" /> GPA: {student.gpa}
-          </span>
-          <span className="joined-date">{student.joinedDate}</span>
+          <span className="joined-date">Enrolled: {student.joinedDate}</span>
         </div>
       </div>
 
