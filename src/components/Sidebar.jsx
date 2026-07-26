@@ -16,15 +16,14 @@ export const Sidebar = ({ activeTab, setActiveTab, onSignOut }) => {
       <div className="sidebar-top-section">
         {/* Brand Header */}
         <div className="sidebar-brand">
-          <div className="sidebar-brand-top">
-            <div className="brand-logo-box">
-              <BookOpen size={20} />
-            </div>
-            <div className="brand-text">
-              <h2>Studer</h2>
-            </div>
+          <div className="brand-logo-box">
+            <BookOpen size={20} />
           </div>
-          <img src={sheryiansLogo} alt="Sheryians Logo" className="sheryians-logo-img-below" />
+          <div className="brand-text">
+            <h2>Studer</h2>
+          </div>
+          <span className="brand-divider">✕</span>
+          <img src={sheryiansLogo} alt="Sheryians Logo" className="sheryians-logo-img" />
         </div>
 
         {/* Navigation Items */}
