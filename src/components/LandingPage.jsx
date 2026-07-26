@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Users, Clock, ShieldCheck, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Users, Clock, ShieldCheck, ArrowRight } from 'lucide-react';
 
 export const LandingPage = ({ onSignIn }) => {
   return (
@@ -13,30 +13,20 @@ export const LandingPage = ({ onSignIn }) => {
           <h2>Studer</h2>
         </div>
         <button className="btn btn-primary" onClick={onSignIn}>
-          <span>Sign In to Dashboard</span>
+          <span>Sign In</span>
           <ArrowRight size={16} />
         </button>
       </header>
 
       {/* Hero Section */}
       <main className="landing-hero-section">
-        <div className="hero-badge">
-          <Sparkles size={14} />
-          <span>Next-Generation Student Management</span>
-        </div>
-
         <h1 className="landing-title">
           Empowering Academic Excellence & School Operations
         </h1>
 
-        <p className="landing-subtitle">
-          A centralized, intuitive platform to manage student records, design course curricula, 
-          schedule class timetables, and monitor attendance in real time.
-        </p>
-
         <div className="landing-cta-group">
           <button className="btn btn-hero-primary" onClick={onSignIn}>
-            <span>Enter Admin Portal</span>
+            <span>Sign In</span>
             <ArrowRight size={18} />
           </button>
         </div>
