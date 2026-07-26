@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { openAddModal, openEditModal, openDetailModal, deleteStudent } from '../features/students/studentsSlice';
 import { UserX, Plus, Edit2, Trash2, Eye } from 'lucide-react';
+import { StudentAvatar } from './StudentAvatar';
 
 export const StudentList = () => {
   const dispatch = useDispatch();
@@ -54,11 +55,12 @@ export const StudentList = () => {
           <span className="row-index">{(index + 1).toString().padStart(2, '0')}</span>
 
           <div className="row-avatar-box">
-            {stu.photoUrl ? (
-              <img src={stu.photoUrl} alt={stu.name} className="row-avatar-img" />
-            ) : (
-              <div className="avatar-initials">{stu.name ? stu.name.charAt(0) : 'S'}</div>
-            )}
+            <StudentAvatar
+              student={stu}
+              className="row-avatar-img"
+              initialsClassName="avatar-initials"
+              size="single"
+            />
           </div>
 
           <div className="row-info-main">

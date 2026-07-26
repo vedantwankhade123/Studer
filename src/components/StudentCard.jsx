@@ -6,6 +6,7 @@ import {
   openDetailModal 
 } from '../features/students/studentsSlice';
 import { Eye, Edit3, Trash2, Mail, BookOpen } from 'lucide-react';
+import { StudentAvatar } from './StudentAvatar';
 
 export const StudentCard = ({ student, viewMode, index }) => {
   const dispatch = useDispatch();
@@ -17,15 +18,6 @@ export const StudentCard = ({ student, viewMode, index }) => {
       case 'On Leave': return 'badge-status badge-leave';
       default: return 'badge-status';
     }
-  };
-
-  const getInitials = (name) => {
-    if (!name) return 'ST';
-    const parts = name.trim().split(' ');
-    if (parts.length >= 2) {
-      return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
-    }
-    return name.slice(0, 2).toUpperCase();
   };
 
   const handleDelete = (e) => {
@@ -47,10 +39,14 @@ export const StudentCard = ({ student, viewMode, index }) => {
   const formattedIndex = String((index ?? 0) + 1).padStart(2, '0');
 
   const renderAvatar = (className) => {
-    if (student.avatar) {
-      return <img src={student.avatar} alt={student.name} className={className} onError={(e) => { e.target.style.display = 'none'; }} />;
-    }
-    return <div className={`avatar-initials ${className}`}>{getInitials(student.name)}</div>;
+    return (
+      <StudentAvatar
+        student={student}
+        className={className}
+        initialsClassName={`avatar-initials ${className}`}
+        size={viewMode === 'list' ? 'single' : 'double'}
+      />
+    );
   };
 
   if (viewMode === 'list') {

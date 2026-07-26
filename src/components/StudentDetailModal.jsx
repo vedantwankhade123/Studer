@@ -6,6 +6,7 @@ import {
   deleteStudent 
 } from '../features/students/studentsSlice';
 import { X, Mail, Phone, Calendar, Edit3, Trash2 } from 'lucide-react';
+import { StudentAvatar } from './StudentAvatar';
 
 export const StudentDetailModal = () => {
   const dispatch = useDispatch();
@@ -29,15 +30,6 @@ export const StudentDetailModal = () => {
     }
   };
 
-  const getInitials = (name) => {
-    if (!name) return 'ST';
-    const parts = name.trim().split(' ');
-    if (parts.length >= 2) {
-      return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
-    }
-    return name.slice(0, 2).toUpperCase();
-  };
-
   return (
     <div className="modal-backdrop" onClick={handleClose}>
       <div className="modal-content detail-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -49,11 +41,12 @@ export const StudentDetailModal = () => {
         </div>
 
         <div className="detail-profile-header">
-          {selectedStudent.avatar ? (
-            <img src={selectedStudent.avatar} alt={selectedStudent.name} className="detail-avatar" />
-          ) : (
-            <div className="detail-avatar-initials">{getInitials(selectedStudent.name)}</div>
-          )}
+          <StudentAvatar
+            student={selectedStudent}
+            className="detail-avatar"
+            initialsClassName="detail-avatar-initials"
+            size="double"
+          />
           <div className="detail-header-text">
             <h2>{selectedStudent.name}</h2>
             <div className="detail-header-badges">

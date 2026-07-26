@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelectedDate, toggleAttendance } from '../features/timetable/timetableSlice';
+import { 
+  setSelectedDate, 
+  toggleAttendance,
+  getDayNameFromDate,
+  selectLecturesForDate,
+} from '../features/timetable/timetableSlice';
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, CheckCircle, XCircle, User, UserCheck } from 'lucide-react';
 
 export const RightWidget = () => {
@@ -47,8 +52,28 @@ export const RightWidget = () => {
     dispatch(setSelectedDate(dateStr));
   };
 
-  // Filter lectures for selected date
-  const activeLectures = timetableEntries;
+  // Check if a calendar day has lectures
+  const dayHasLectures = (dayNum) => {
+    const mm = String(month + 1).padStart(2, '0');
+    const dd = String(dayNum).padStart(2, '0');
+    const dateStr = `${year}-${mm}-${dd}`;
+    return selectLecturesForDate(timetableEntries, dateStr).length > 0;
+  };
+
+  // Filter and sort lectures for selected date
+  const activeLectures = useMemo(
+    () => selectLecturesForDate(timetableEntries, selectedDate),
+    [timetableEntries, selectedDate]
+  );
+
+  const selectedDayName = getDayNameFromDate(selectedDate);
+
+  // Format the date for display
+  const formatDisplayDate = () => {
+    if (!selectedDate) return '';
+    const d = new Date(selectedDate + 'T00:00:00');
+    return `${d.getDate()} ${monthNames[d.getMonth()]}`;
+  };
 
   return (
     <div className="right-widget-panel">
@@ -75,11 +100,12 @@ export const RightWidget = () => {
             const formattedDay = String(dayNum).padStart(2, '0');
             const dateStr = `${year}-${formattedMonth}-${formattedDay}`;
             const isSelected = selectedDate === dateStr;
+            const hasLectures = dayHasLectures(dayNum);
 
             return (
               <button
                 key={`day-${dayNum}`}
-                className={`cal-day-cell ${isSelected ? 'active' : ''}`}
+                className={`cal-day-cell ${isSelected ? 'active' : ''} ${hasLectures && !isSelected ? 'has-lectures' : ''}`}
                 onClick={() => handleDateClick(dayNum)}
               >
                 {dayNum}
@@ -92,11 +118,12 @@ export const RightWidget = () => {
       {/* Lecture & Attendance Inspector for Selected Date */}
       <div className="attendance-inspector">
         <div className="inspector-header">
-          <h5>Scheduled Lectures for {selectedDate}</h5>
+          <h5>{selectedDayName}, {formatDisplayDate()}</h5>
+          <span className="inspector-count">{activeLectures.length} lecture{activeLectures.length !== 1 ? 's' : ''}</span>
         </div>
 
         {activeLectures.length === 0 ? (
-          <p className="no-lectures-msg">No timetable lectures scheduled for this date.</p>
+          <p className="no-lectures-msg">No lectures scheduled for this date.</p>
         ) : (
           <div className="lectures-list">
             {activeLectures.map((lecture) => {
@@ -107,7 +134,7 @@ export const RightWidget = () => {
                 <div key={lecture.id} className="lecture-card-widget">
                   <div className="lecture-time-badge">
                     <Clock size={12} />
-                    <span>{lecture.startTime} - {lecture.endTime}</span>
+                    <span>{lecture.startTime} – {lecture.endTime}</span>
                   </div>
                   <h4>{lecture.subjectName || lecture.courseName}</h4>
                   <p className="lecture-sub"><User size={12} /> {lecture.instructor}</p>
