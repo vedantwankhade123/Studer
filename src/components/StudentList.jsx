@@ -26,9 +26,9 @@ export const StudentList = ({ viewMode }) => {
     return (
       <div className="empty-state">
         <div className="empty-icon">
-          <UserX size={48} />
+          <UserX size={40} />
         </div>
-        <h3>No Students Found</h3>
+        <h3>No Students Directory Items</h3>
         <p>No student records match your current search and filter criteria.</p>
         <div className="empty-actions">
           {(searchQuery || courseFilter !== 'All' || statusFilter !== 'All') ? (
@@ -48,13 +48,13 @@ export const StudentList = ({ viewMode }) => {
   return (
     <div className="student-list-wrapper">
       <div className="section-header">
-        <h2>Student Directory <span className="count-badge">{filteredStudents.length}</span></h2>
-        <span className="info-text">Showing {filteredStudents.length} of {list.length} total records</span>
+        <h3>Top Students <span className="count-badge">{filteredStudents.length}</span></h3>
+        <span className="info-text">Showing {filteredStudents.length} of {list.length} total</span>
       </div>
 
-      <div className={viewMode === 'grid' ? 'students-grid' : 'students-list-view'}>
-        {filteredStudents.map((student) => (
-          <StudentCard key={student.id} student={student} viewMode={viewMode} />
+      <div className={viewMode === 'grid' ? 'students-grid' : 'students-rows-view'}>
+        {filteredStudents.map((student, idx) => (
+          <StudentCard key={student.id} student={student} viewMode={viewMode} index={idx} />
         ))}
       </div>
     </div>

@@ -1,50 +1,40 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { openAddModal, clearAllStudents } from '../features/students/studentsSlice';
-import { GraduationCap, UserPlus, Trash2 } from 'lucide-react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearchQuery } from '../features/students/studentsSlice';
+import { Search, Bell, MessageSquare, ChevronDown } from 'lucide-react';
 
 export const Navbar = () => {
   const dispatch = useDispatch();
-  const studentsCount = useSelector((state) => state.students.list.length);
-
-  const handleClearAll = () => {
-    if (window.confirm('Are you sure you want to clear all student records?')) {
-      dispatch(clearAllStudents());
-    }
-  };
+  const searchQuery = useSelector((state) => state.students.searchQuery);
 
   return (
-    <header className="navbar-container">
-      <div className="navbar-content">
-        <div className="brand">
-          <div className="logo-icon">
-            <GraduationCap size={28} />
-          </div>
-          <div>
-            <h1 className="brand-title">Studer <span className="badge-rtk">Redux Toolkit</span></h1>
-            <p className="brand-subtitle">Student Management System</p>
-          </div>
-        </div>
+    <header className="top-navbar">
+      <div className="search-box">
+        <Search size={18} className="search-icon" />
+        <input
+          type="text"
+          placeholder="Search students, courses, roll numbers..."
+          value={searchQuery}
+          onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+        />
+      </div>
 
-        <div className="navbar-actions">
-          {studentsCount > 0 && (
-            <button 
-              className="btn btn-secondary" 
-              onClick={handleClearAll}
-              title="Clear all student records"
-            >
-              <Trash2 size={16} />
-              <span>Clear All</span>
-            </button>
-          )}
-          
-          <button 
-            className="btn btn-primary" 
-            onClick={() => dispatch(openAddModal())}
-          >
-            <UserPlus size={18} />
-            <span>Add Student</span>
-          </button>
+      <div className="header-actions">
+        <button className="header-icon-btn" title="Messages">
+          <MessageSquare size={18} />
+        </button>
+
+        <button className="header-icon-btn" title="Notifications">
+          <Bell size={18} />
+          <span className="notification-dot"></span>
+        </button>
+
+        <div className="user-profile-pill">
+          <div className="user-avatar">
+            <span>S</span>
+          </div>
+          <span className="user-name">Sarah Snow</span>
+          <ChevronDown size={14} className="dropdown-arrow" />
         </div>
       </div>
     </header>
