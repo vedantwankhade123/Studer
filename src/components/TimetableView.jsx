@@ -182,7 +182,7 @@ export const TimetableView = () => {
                   <label>Instructor Name</label>
                   <input
                     type="text"
-                    placeholder="e.g. Dr. A. Sharma"
+                    placeholder="Vedant Wankhade"
                     value={formData.instructor}
                     onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
                   />
@@ -192,7 +192,7 @@ export const TimetableView = () => {
                   <label>Start Time *</label>
                   <input
                     type="text"
-                    placeholder="e.g. 09:00 AM"
+                    placeholder="09:00 AM"
                     value={formData.startTime}
                     onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
                   />
@@ -202,7 +202,7 @@ export const TimetableView = () => {
                   <label>End Time *</label>
                   <input
                     type="text"
-                    placeholder="e.g. 10:30 AM"
+                    placeholder="10:30 AM"
                     value={formData.endTime}
                     onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
                   />

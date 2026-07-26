@@ -279,7 +279,7 @@ export const CoursesView = ({ setActiveTab }) => {
                   <label>Subject Instructor / Lecturer</label>
                   <input
                     type="text"
-                    placeholder="Dr. A. Sharma"
+                    placeholder="Vedant Wankhade"
                     value={subjectFormData.instructor}
                     onChange={(e) => setSubjectFormData({ ...subjectFormData, instructor: e.target.value })}
                   />

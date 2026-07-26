@@ -22,9 +22,9 @@ export const Navbar = ({ activeTab }) => {
       <div className="header-actions">
         <div className="user-profile-pill">
           <div className="user-avatar">
-            <span>S</span>
+            <span>V</span>
           </div>
-          <span className="user-name">Sarah Snow</span>
+          <span className="user-name">Vedant Wankhade</span>
           <ChevronDown size={14} className="dropdown-arrow" />
         </div>
       </div>

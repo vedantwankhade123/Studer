@@ -6,8 +6,8 @@ export const SettingsView = () => {
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   const [profileData, setProfileData] = useState({
-    name: 'Sarah Snow',
-    email: 'sarah.snow@studer.edu',
+    name: 'Vedant Wankhade',
+    email: 'vedant.wankhade@studer.edu',
     role: 'Administrator',
     department: 'Student Affairs & Registrar',
   });
