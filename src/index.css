@@ -97,8 +97,8 @@ html, body {
 }
 
 .brand-logo-box {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   background: var(--yellow-hero);
   color: var(--sidebar-active-text);
   border-radius: 12px;
@@ -110,16 +110,10 @@ html, body {
 
 .brand-text h2 {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-main);
   line-height: 1.1;
-}
-
-.brand-text span {
-  font-size: 0.725rem;
-  color: var(--text-muted);
-  font-weight: 600;
 }
 
 .sidebar-nav {

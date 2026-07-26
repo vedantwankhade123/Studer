@@ -26,7 +26,6 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
           </div>
           <div className="brand-text">
             <h2>Studer</h2>
-            <span>Management</span>
           </div>
         </div>
 
