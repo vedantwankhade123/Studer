@@ -1,93 +1,149 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { clearAllStudents } from '../features/students/studentsSlice';
-import { Database, RotateCcw, ShieldCheck, Server, HardDrive } from 'lucide-react';
+import React, { useState } from 'react';
+import { User, Mail, Shield, Building, Phone, MapPin, Edit2, CheckCircle, Save, X } from 'lucide-react';
 
 export const SettingsView = () => {
-  const dispatch = useDispatch();
-  const students = useSelector((state) => state.students.list);
-  const courses = useSelector((state) => state.courses.list);
-  const timetable = useSelector((state) => state.timetable.entries);
+  const [isEditing, setIsEditing] = useState(false);
+  const [savedSuccess, setSavedSuccess] = useState(false);
 
-  const handleClearAll = () => {
-    if (window.confirm('Are you sure you want to clear all student records from local storage?')) {
-      dispatch(clearAllStudents());
-    }
+  const [profileData, setProfileData] = useState({
+    name: 'Sarah Snow',
+    email: 'sarah.snow@studer.edu',
+    role: 'System Administrator',
+    department: 'Student Affairs & Registrar',
+    phone: '+1 (555) 234-5678',
+    office: 'Admin Block, Suite 102',
+  });
+
+  const [tempData, setTempData] = useState({ ...profileData });
+
+  const handleEditClick = () => {
+    setTempData({ ...profileData });
+    setIsEditing(true);
+    setSavedSuccess(false);
+  };
+
+  const handleCancel = () => {
+    setTempData({ ...profileData });
+    setIsEditing(false);
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    setProfileData({ ...tempData });
+    setIsEditing(false);
+    setSavedSuccess(true);
+    setTimeout(() => setSavedSuccess(false), 4000);
   };
 
   return (
-    <div className="settings-view-container">
-      <div className="settings-grid">
-        <div className="settings-card">
-          <div className="settings-card-header">
-            <div className="settings-icon-box cyan-icon">
-              <Database size={20} />
+    <div className="settings-profile-container">
+      <div className="profile-card">
+        <div className="profile-card-header">
+          <div className="profile-header-left">
+            <div className="profile-avatar-large">
+              <span>{profileData.name.charAt(0)}</span>
             </div>
-            <div>
-              <h4>Data Storage & Cache</h4>
-              <p className="card-sub-text">Persistent state stored in browser LocalStorage</p>
-            </div>
-          </div>
-
-          <div className="settings-stats-list">
-            <div className="setting-info-row">
-              <span>Student Records Cached:</span>
-              <strong>{students.length} Records</strong>
-            </div>
-            <div className="setting-info-row">
-              <span>Courses Configured:</span>
-              <strong>{courses.length} Courses</strong>
-            </div>
-            <div className="setting-info-row">
-              <span>Timetable Lectures:</span>
-              <strong>{timetable.length} Lectures</strong>
+            <div className="profile-header-info">
+              <h3>{profileData.name}</h3>
+              <span className="profile-role-badge">{profileData.role}</span>
             </div>
           </div>
 
-          <div className="settings-action-row">
-            <button className="btn btn-danger" onClick={handleClearAll}>
-              <RotateCcw size={15} /> Clear All Cached Data
-            </button>
+          <div className="profile-header-actions">
+            {!isEditing ? (
+              <button className="btn btn-primary" onClick={handleEditClick}>
+                <Edit2 size={16} />
+                <span>Edit Profile</span>
+              </button>
+            ) : (
+              <div className="header-btn-group">
+                <button type="button" className="btn btn-secondary" onClick={handleCancel}>
+                  <X size={16} />
+                  <span>Cancel</span>
+                </button>
+                <button type="submit" form="profile-form" className="btn btn-primary">
+                  <Save size={16} />
+                  <span>Save Changes</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="settings-card">
-          <div className="settings-card-header">
-            <div className="settings-icon-box lavender-icon">
-              <ShieldCheck size={20} />
-            </div>
-            <div>
-              <h4>Application Architecture</h4>
-              <p className="card-sub-text">Core technology stack & state engine</p>
-            </div>
+        {savedSuccess && (
+          <div className="profile-success-banner">
+            <CheckCircle size={16} />
+            <span>Profile details updated successfully!</span>
+          </div>
+        )}
+
+        <form id="profile-form" onSubmit={handleSave} className="profile-form-grid">
+          <div className="form-group">
+            <label><User size={14} /> Full Name</label>
+            <input
+              type="text"
+              disabled={!isEditing}
+              value={isEditing ? tempData.name : profileData.name}
+              onChange={(e) => setTempData({ ...tempData, name: e.target.value })}
+              className={!isEditing ? 'disabled-input' : 'active-input'}
+            />
           </div>
 
-          <div className="redux-details-list">
-            <div className="r-detail-item">
-              <div className="r-item-left">
-                <Server size={15} />
-                <span>Central State Store:</span>
-              </div>
-              <span className="status-badge-sm active">Configured</span>
-            </div>
-
-            <div className="r-detail-item">
-              <div className="r-item-left">
-                <HardDrive size={15} />
-                <span>Persistence Engine:</span>
-              </div>
-              <span className="status-badge-sm active">LocalStorage Sync</span>
-            </div>
-
-            <div className="r-detail-item">
-              <div className="r-item-left">
-                <ShieldCheck size={15} />
-                <span>State Immutability:</span>
-              </div>
-              <span className="status-badge-sm active">Active</span>
-            </div>
+          <div className="form-group">
+            <label><Mail size={14} /> Email Address</label>
+            <input
+              type="email"
+              disabled={!isEditing}
+              value={isEditing ? tempData.email : profileData.email}
+              onChange={(e) => setTempData({ ...tempData, email: e.target.value })}
+              className={!isEditing ? 'disabled-input' : 'active-input'}
+            />
           </div>
-        </div>
+
+          <div className="form-group">
+            <label><Shield size={14} /> Role / Designation</label>
+            <input
+              type="text"
+              disabled={!isEditing}
+              value={isEditing ? tempData.role : profileData.role}
+              onChange={(e) => setTempData({ ...tempData, role: e.target.value })}
+              className={!isEditing ? 'disabled-input' : 'active-input'}
+            />
+          </div>
+
+          <div className="form-group">
+            <label><Building size={14} /> Department</label>
+            <input
+              type="text"
+              disabled={!isEditing}
+              value={isEditing ? tempData.department : profileData.department}
+              onChange={(e) => setTempData({ ...tempData, department: e.target.value })}
+              className={!isEditing ? 'disabled-input' : 'active-input'}
+            />
+          </div>
+
+          <div className="form-group">
+            <label><Phone size={14} /> Phone Number</label>
+            <input
+              type="text"
+              disabled={!isEditing}
+              value={isEditing ? tempData.phone : profileData.phone}
+              onChange={(e) => setTempData({ ...tempData, phone: e.target.value })}
+              className={!isEditing ? 'disabled-input' : 'active-input'}
+            />
+          </div>
+
+          <div className="form-group">
+            <label><MapPin size={14} /> Office Location</label>
+            <input
+              type="text"
+              disabled={!isEditing}
+              value={isEditing ? tempData.office : profileData.office}
+              onChange={(e) => setTempData({ ...tempData, office: e.target.value })}
+              className={!isEditing ? 'disabled-input' : 'active-input'}
+            />
+          </div>
+        </form>
       </div>
     </div>
   );
