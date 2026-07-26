@@ -11,7 +11,7 @@ export const HeroBanner = ({ currentUser }) => {
       return currentUser.fullName.split(' ')[0];
     }
     try {
-      const saved = localStorage.getItem('studer_current_user');
+      const saved = sessionStorage.getItem('studer_current_user') || localStorage.getItem('studer_current_user');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed?.fullName) return parsed.fullName.split(' ')[0];

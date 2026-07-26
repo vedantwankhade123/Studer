@@ -16,25 +16,36 @@ import { LandingPage } from './components/LandingPage';
 export function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const saved = localStorage.getItem('studer_auth');
+    localStorage.removeItem('studer_auth');
+    const saved = sessionStorage.getItem('studer_auth');
     return saved !== null ? JSON.parse(saved) : false;
   });
 
   const [currentUser, setCurrentUser] = useState(() => {
-    const saved = localStorage.getItem('studer_current_user');
-    return saved ? JSON.parse(saved) : { fullName: 'Vedant Wankhade', email: 'vedant@studer.com' };
+    const savedSession = sessionStorage.getItem('studer_current_user');
+    if (savedSession) {
+      try { return JSON.parse(savedSession); } catch(e) {}
+    }
+    const savedLocal = localStorage.getItem('studer_current_user');
+    if (savedLocal) {
+      try { return JSON.parse(savedLocal); } catch(e) {}
+    }
+    return { fullName: 'Vedant Wankhade', email: 'vedant@studer.com' };
   });
 
   const handleSignIn = (userData) => {
     const userToSave = userData || { fullName: 'Vedant Wankhade', email: 'admin@studer.com' };
-    localStorage.setItem('studer_auth', JSON.stringify(true));
+    sessionStorage.setItem('studer_auth', JSON.stringify(true));
+    sessionStorage.setItem('studer_current_user', JSON.stringify(userToSave));
     localStorage.setItem('studer_current_user', JSON.stringify(userToSave));
     setCurrentUser(userToSave);
     setIsAuthenticated(true);
   };
 
   const handleSignOut = () => {
-    localStorage.setItem('studer_auth', JSON.stringify(false));
+    sessionStorage.removeItem('studer_auth');
+    sessionStorage.removeItem('studer_current_user');
+    localStorage.removeItem('studer_auth');
     setIsAuthenticated(false);
   };
 

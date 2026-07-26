@@ -10,7 +10,7 @@ export const SettingsView = ({ currentUser }) => {
       return { name: currentUser.fullName, email: currentUser.email };
     }
     try {
-      const saved = localStorage.getItem('studer_current_user');
+      const saved = sessionStorage.getItem('studer_current_user') || localStorage.getItem('studer_current_user');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed?.fullName && parsed?.email) {
@@ -47,10 +47,12 @@ export const SettingsView = ({ currentUser }) => {
     e.preventDefault();
     setProfileData({ ...tempData });
     try {
-      localStorage.setItem('studer_current_user', JSON.stringify({
+      const userToSave = {
         fullName: tempData.name,
         email: tempData.email,
-      }));
+      };
+      sessionStorage.setItem('studer_current_user', JSON.stringify(userToSave));
+      localStorage.setItem('studer_current_user', JSON.stringify(userToSave));
     } catch (err) {
       console.error(err);
     }
