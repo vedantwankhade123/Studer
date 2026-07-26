@@ -1,6 +1,6 @@
 /* ==========================================================================
    STUDER - STUDENT MANAGEMENT SYSTEM
-   Full-Width Clean Light Theme System with Interactive Timetable & Calendar
+   Full-Width Clean Light Theme System
    ========================================================================== */
 
 :root {
@@ -24,8 +24,6 @@
 
   /* Pill & Accent Colors */
   --yellow-hero: #ffd358;
-  --yellow-hero-hover: #f5ca42;
-
   --sidebar-active-pill: #ffd1d7;
   --sidebar-active-text: #1b1e32;
 
@@ -72,7 +70,7 @@ html, body {
   background-color: var(--bg-surface);
 }
 
-/* Left Sidebar (Top Aligned Options) */
+/* Left Sidebar */
 .app-sidebar {
   width: 240px;
   background-color: var(--bg-surface);
@@ -169,7 +167,7 @@ html, body {
   background-color: var(--bg-body);
 }
 
-/* Top Navbar (#F4F6FA Header Color) */
+/* Top Navbar */
 .top-navbar {
   height: 72px;
   padding: 0 2rem;
@@ -250,7 +248,7 @@ html, body {
   color: var(--text-dim);
 }
 
-/* Full Width Inner Content Canvas */
+/* Dashboard Inner Canvas */
 .dashboard-content-canvas {
   flex: 1;
   padding: 2rem;
@@ -360,20 +358,9 @@ html, body {
   gap: 1rem;
 }
 
-.cyan-card {
-  background: var(--pastel-cyan);
-  color: var(--pastel-cyan-text);
-}
-
-.lavender-card {
-  background: var(--pastel-lavender);
-  color: var(--pastel-lavender-text);
-}
-
-.pink-card {
-  background: var(--pastel-pink);
-  color: var(--pastel-pink-text);
-}
+.cyan-card { background: var(--pastel-cyan); color: var(--pastel-cyan-text); }
+.lavender-card { background: var(--pastel-lavender); color: var(--pastel-lavender-text); }
+.pink-card { background: var(--pastel-pink); color: var(--pastel-pink-text); }
 
 .stat-card-icon {
   width: 42px;
@@ -398,18 +385,7 @@ html, body {
   opacity: 0.85;
 }
 
-/* Directory Section */
-.directory-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.full-width-directory {
-  width: 100%;
-}
-
-/* Filter Bar (Standardized Height: 42px & Equal Padding) */
+/* Filter Bar Controls */
 .filter-bar {
   display: flex;
   align-items: center;
@@ -440,8 +416,6 @@ html, body {
   font-size: 0.875rem;
   outline: none;
   color: var(--text-main);
-  display: flex;
-  align-items: center;
 }
 
 .clear-search-btn {
@@ -492,6 +466,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 0.75rem;
 }
 
 .section-header h3 {
@@ -609,14 +584,6 @@ html, body {
   gap: 1.25rem;
 }
 
-.stat-pill {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.825rem;
-  font-weight: 700;
-}
-
 .badge-status {
   font-size: 0.725rem;
   font-weight: 800;
@@ -656,31 +623,7 @@ html, body {
 .icon-btn.btn-edit:hover { background: #fef3c7; color: #b45309; }
 .icon-btn.btn-delete:hover { background: #fee2e2; color: #dc2626; }
 
-/* Grid View */
-.students-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.25rem;
-}
-
-.student-card {
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 18px;
-  padding: 1.35rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.student-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-}
-
-/* Right Widget Panel */
+/* Right Widget Panel & Calendar Button Styling */
 .right-widget-panel {
   background: white;
   border: 1px solid var(--border-color);
@@ -710,10 +653,31 @@ html, body {
   gap: 0.4rem;
   font-size: 0.775rem;
   font-weight: 700;
-  color: var(--text-muted);
+  color: var(--text-main);
   background: var(--bg-body);
-  padding: 0.3rem 0.6rem;
+  padding: 0.35rem 0.65rem;
   border-radius: 10px;
+}
+
+/* Styled Month Switcher Arrow Buttons */
+.cal-arrow {
+  background: white;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cal-arrow:hover {
+  background: var(--primary-btn);
+  color: white;
+  border-color: var(--primary-btn);
 }
 
 .monthly-calendar-grid {
@@ -767,6 +731,7 @@ html, body {
   color: white;
 }
 
+/* Attendance Inspector */
 .attendance-inspector {
   display: flex;
   flex-direction: column;
@@ -875,7 +840,7 @@ html, body {
 .status-btn.present { background: #dcfce7; color: #15803d; }
 .status-btn.absent { background: #fee2e2; color: #dc2626; }
 
-/* Empty State Styling */
+/* Empty State */
 .empty-state {
   background: transparent;
   border: none;
@@ -913,6 +878,7 @@ html, body {
   gap: 0.75rem;
 }
 
+/* Button Design System */
 .btn {
   font-family: var(--font-family);
   font-size: 0.85rem;
@@ -944,6 +910,10 @@ html, body {
   border: 1px solid var(--border-color);
 }
 
+.btn-secondary:hover {
+  background: var(--bg-body);
+}
+
 .btn-danger {
   background: #fee2e2;
   color: #dc2626;
@@ -953,6 +923,361 @@ html, body {
 .btn-danger:hover {
   background: #dc2626;
   color: white;
+}
+
+/* Courses View & Cards Grid Styling */
+.courses-view-container, .timetable-view-container, .settings-view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.view-header {
+  margin-bottom: 0.5rem;
+}
+
+.view-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.view-header p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-btn-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.course-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.course-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pastel-lavender);
+  color: var(--pastel-lavender-text);
+}
+
+.course-code-pill {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--bg-body);
+  padding: 4px 10px;
+  border-radius: 8px;
+  color: var(--text-main);
+}
+
+.course-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.course-stats-row {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.c-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.subjects-section-box {
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.subjects-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.subjects-header span {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-add-subject-mini {
+  background: white;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.2s ease;
+}
+
+.btn-add-subject-mini:hover {
+  background: var(--primary-btn);
+  color: white;
+  border-color: var(--primary-btn);
+}
+
+.no-subjects-msg {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.subjects-chip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.subject-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border: 1px solid var(--border-color);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.775rem;
+}
+
+.sub-info {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sub-info strong {
+  color: var(--text-main);
+}
+
+.sub-code {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.btn-remove-sub {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.btn-remove-sub:hover {
+  color: #dc2626;
+}
+
+.course-card-actions-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.btn-view-students {
+  flex: 1;
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 0.825rem;
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.btn-view-students:hover {
+  background: var(--primary-btn);
+  color: white;
+  border-color: var(--primary-btn);
+}
+
+/* Timetable Views */
+.timetable-days-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.timetable-day-column {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.day-column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.day-column-header h4 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.lecture-count-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-body);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.day-lectures-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.empty-day-slot {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 1.5rem 0;
+  font-style: italic;
+}
+
+.timetable-lecture-card {
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+}
+
+.tt-time-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+.timetable-lecture-card h5 {
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.tt-code {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.tt-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.tt-meta-row span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.btn-delete-tt {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.btn-delete-tt:hover {
+  color: #dc2626;
 }
 
 /* Modals */
