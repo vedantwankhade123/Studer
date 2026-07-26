@@ -11,6 +11,11 @@ import {
 } from '../features/timetable/timetableSlice';
 import { Plus, Clock, User, Trash2, X, CheckCircle, ChevronLeft, ChevronRight, Calendar as CalendarIcon } from 'lucide-react';
 
+const monthNames = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
 export const TimetableView = () => {
   const dispatch = useDispatch();
   const timetableEntries = useSelector((state) => state.timetable.entries);
@@ -21,11 +26,6 @@ export const TimetableView = () => {
   const selectedDateObj = useMemo(() => new Date(selectedDate + 'T00:00:00'), [selectedDate]);
   const [calMonth, setCalMonth] = useState(selectedDateObj.getMonth());
   const [calYear, setCalYear] = useState(selectedDateObj.getFullYear());
-
-  const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
 
   const dayName = getDayNameFromDate(selectedDate);
 
