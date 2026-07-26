@@ -6,7 +6,7 @@ import {
   openAddTimetableModal, 
   closeAddTimetableModal 
 } from '../features/timetable/timetableSlice';
-import { CalendarCheck, Plus, Clock, MapPin, User, Trash2, X, CheckCircle, BookOpen } from 'lucide-react';
+import { CalendarCheck, Plus, Clock, User, Trash2, X, CheckCircle } from 'lucide-react';
 
 export const TimetableView = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,6 @@ export const TimetableView = () => {
     day: 'Monday',
     startTime: '09:00 AM',
     endTime: '10:30 AM',
-    room: 'Lab 101',
     instructor: firstSubject.instructor || 'Faculty Member',
   });
 
@@ -110,7 +109,6 @@ export const TimetableView = () => {
                       <span className="tt-code">{item.courseName} ({item.subjectCode || item.courseCode})</span>
                       
                       <div className="tt-meta-row">
-                        <span><MapPin size={12} /> {item.room}</span>
                         <span><User size={12} /> {item.instructor}</span>
                       </div>
 
@@ -184,6 +182,16 @@ export const TimetableView = () => {
                 </div>
 
                 <div className="form-group">
+                  <label>Instructor Name</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Dr. A. Sharma"
+                    value={formData.instructor}
+                    onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
                   <label>Start Time *</label>
                   <input
                     type="text"
@@ -200,26 +208,6 @@ export const TimetableView = () => {
                     placeholder="e.g. 10:30 AM"
                     value={formData.endTime}
                     onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Room / Lab Location *</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Lab 302 / Seminar Hall B"
-                    value={formData.room}
-                    onChange={(e) => setFormData({ ...formData, room: e.target.value })}
-                  />
-                </div>
-
-                <div className="form-group full-width">
-                  <label>Instructor Name</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Dr. A. Sharma"
-                    value={formData.instructor}
-                    onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
                   />
                 </div>
               </div>

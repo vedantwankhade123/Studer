@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedDate, toggleAttendance } from '../features/timetable/timetableSlice';
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, CheckCircle, XCircle, MapPin, UserCheck } from 'lucide-react';
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, CheckCircle, XCircle, User, UserCheck } from 'lucide-react';
 
 export const RightWidget = () => {
   const dispatch = useDispatch();
@@ -109,8 +109,8 @@ export const RightWidget = () => {
                     <Clock size={12} />
                     <span>{lecture.startTime} - {lecture.endTime}</span>
                   </div>
-                  <h4>{lecture.courseName} ({lecture.courseCode})</h4>
-                  <p className="lecture-sub"><MapPin size={12} /> {lecture.room} • {lecture.instructor}</p>
+                  <h4>{lecture.subjectName || lecture.courseName}</h4>
+                  <p className="lecture-sub"><User size={12} /> {lecture.instructor}</p>
 
                   <div className="attendance-summary">
                     <UserCheck size={14} />
