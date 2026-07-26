@@ -21,7 +21,7 @@ export const LandingPage = ({ onSignIn }) => {
       {/* Hero Section */}
       <main className="landing-hero-section">
         <h1 className="landing-title">
-          Empowering Academic Excellence & School Operations
+          Student & Academic Management System
         </h1>
 
         <div className="landing-cta-group">
