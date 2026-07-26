@@ -1883,10 +1883,9 @@ html, body {
 
 .auth-modal-header h2 {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: #0f172a;
-  margin-bottom: 0.35rem;
 }
 
 .auth-modal-header p {
