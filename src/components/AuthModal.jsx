@@ -95,11 +95,6 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
         {/* Modal Header */}
         <div className="auth-modal-header">
           <h2>{mode === 'signin' ? 'Sign In to Studer' : 'Create Admin Account'}</h2>
-          <p>
-            {mode === 'signin' 
-              ? 'Enter your credentials to access your dashboard' 
-              : 'Sign up to start managing students, courses & timetables'}
-          </p>
         </div>
 
         {/* Error Alert */}
