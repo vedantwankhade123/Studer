@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Mail, Shield, Building, Phone, MapPin, Edit2, CheckCircle, Save, X } from 'lucide-react';
+import { User, Mail, Shield, Building, Edit2, CheckCircle, Save, X } from 'lucide-react';
 
 export const SettingsView = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -8,10 +8,8 @@ export const SettingsView = () => {
   const [profileData, setProfileData] = useState({
     name: 'Sarah Snow',
     email: 'sarah.snow@studer.edu',
-    role: 'System Administrator',
+    role: 'Administrator',
     department: 'Student Affairs & Registrar',
-    phone: '+1 (555) 234-5678',
-    office: 'Admin Block, Suite 102',
   });
 
   const [tempData, setTempData] = useState({ ...profileData });
@@ -36,13 +34,10 @@ export const SettingsView = () => {
   };
 
   return (
-    <div className="settings-profile-container">
-      <div className="profile-card">
+    <div className="settings-profile-container left-aligned">
+      <div className="profile-card transparent-card">
         <div className="profile-card-header">
           <div className="profile-header-left">
-            <div className="profile-avatar-large">
-              <span>{profileData.name.charAt(0)}</span>
-            </div>
             <div className="profile-header-info">
               <h3>{profileData.name}</h3>
               <span className="profile-role-badge">{profileData.role}</span>
@@ -79,7 +74,7 @@ export const SettingsView = () => {
 
         <form id="profile-form" onSubmit={handleSave} className="profile-form-grid">
           <div className="form-group">
-            <label><User size={14} /> Full Name</label>
+            <label><User size={14} /> Name</label>
             <input
               type="text"
               disabled={!isEditing}
@@ -90,7 +85,7 @@ export const SettingsView = () => {
           </div>
 
           <div className="form-group">
-            <label><Mail size={14} /> Email Address</label>
+            <label><Mail size={14} /> Email</label>
             <input
               type="email"
               disabled={!isEditing}
@@ -101,7 +96,7 @@ export const SettingsView = () => {
           </div>
 
           <div className="form-group">
-            <label><Shield size={14} /> Role / Designation</label>
+            <label><Shield size={14} /> Role</label>
             <input
               type="text"
               disabled={!isEditing}
@@ -118,28 +113,6 @@ export const SettingsView = () => {
               disabled={!isEditing}
               value={isEditing ? tempData.department : profileData.department}
               onChange={(e) => setTempData({ ...tempData, department: e.target.value })}
-              className={!isEditing ? 'disabled-input' : 'active-input'}
-            />
-          </div>
-
-          <div className="form-group">
-            <label><Phone size={14} /> Phone Number</label>
-            <input
-              type="text"
-              disabled={!isEditing}
-              value={isEditing ? tempData.phone : profileData.phone}
-              onChange={(e) => setTempData({ ...tempData, phone: e.target.value })}
-              className={!isEditing ? 'disabled-input' : 'active-input'}
-            />
-          </div>
-
-          <div className="form-group">
-            <label><MapPin size={14} /> Office Location</label>
-            <input
-              type="text"
-              disabled={!isEditing}
-              value={isEditing ? tempData.office : profileData.office}
-              onChange={(e) => setTempData({ ...tempData, office: e.target.value })}
               className={!isEditing ? 'disabled-input' : 'active-input'}
             />
           </div>

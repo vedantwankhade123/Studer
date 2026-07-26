@@ -1301,28 +1301,27 @@ html, body {
 }
 
 /* SETTINGS USER PROFILE FORM STYLES */
-.settings-profile-container {
-  max-width: 800px;
+.settings-profile-container.left-aligned {
+  max-width: 760px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
 }
 
-.profile-card {
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
-  padding: 2rem;
+.profile-card.transparent-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
 }
 
 .profile-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -1332,23 +1331,9 @@ html, body {
   gap: 1.25rem;
 }
 
-.profile-avatar-large {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  background: var(--yellow-hero);
-  color: var(--sidebar-active-text);
-  font-family: var(--font-heading);
-  font-size: 1.65rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .profile-header-info h3 {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-main);
 }
@@ -1393,8 +1378,8 @@ html, body {
 }
 
 .disabled-input {
-  background: var(--bg-body) !important;
-  border-color: var(--border-color) !important;
+  background: white !important;
+  border: 1px solid var(--border-color) !important;
   color: var(--text-main) !important;
   cursor: not-allowed;
   opacity: 0.85;
@@ -1403,7 +1388,7 @@ html, body {
 
 .active-input {
   background: white !important;
-  border-color: var(--primary-btn) !important;
+  border: 1px solid var(--primary-btn) !important;
   color: var(--text-main) !important;
   box-shadow: 0 0 0 3px rgba(27, 30, 50, 0.08);
 }

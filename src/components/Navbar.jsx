@@ -8,7 +8,7 @@ export const Navbar = ({ activeTab }) => {
       case 'students': return 'Student Directory';
       case 'courses': return 'Courses & Curriculum';
       case 'timetable': return 'Class Timetable';
-      case 'settings': return 'System Settings';
+      case 'settings': return 'Settings';
       default: return 'Dashboard';
     }
   };
