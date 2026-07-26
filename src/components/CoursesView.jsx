@@ -184,7 +184,7 @@ export const CoursesView = ({ setActiveTab }) => {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitCourse} className="modal-body">
+            <form onSubmit={handleSubmitCourse} className="modal-body" autoComplete="off">
               <div className="form-grid">
                 <div className="form-group">
                   <label>Course Title *</label>
@@ -193,6 +193,7 @@ export const CoursesView = ({ setActiveTab }) => {
                     placeholder="Artificial Intelligence & Robotics"
                     value={courseFormData.name}
                     onChange={(e) => setCourseFormData({ ...courseFormData, name: e.target.value })}
+                    autoComplete="off"
                   />
                   {errors.name && <span className="error-message">{errors.name}</span>}
                 </div>
@@ -204,6 +205,7 @@ export const CoursesView = ({ setActiveTab }) => {
                     placeholder="AI-401"
                     value={courseFormData.code}
                     onChange={(e) => setCourseFormData({ ...courseFormData, code: e.target.value })}
+                    autoComplete="off"
                   />
                 </div>
 
@@ -247,7 +249,7 @@ export const CoursesView = ({ setActiveTab }) => {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitSubject} className="modal-body">
+            <form onSubmit={handleSubmitSubject} className="modal-body" autoComplete="off">
               <div className="form-grid">
                 <div className="form-group">
                   <label>Subject Name *</label>
@@ -256,6 +258,7 @@ export const CoursesView = ({ setActiveTab }) => {
                     placeholder="Operating Systems & Kernel Design"
                     value={subjectFormData.name}
                     onChange={(e) => setSubjectFormData({ ...subjectFormData, name: e.target.value })}
+                    autoComplete="off"
                   />
                   {errors.subjectName && <span className="error-message">{errors.subjectName}</span>}
                 </div>
@@ -267,6 +270,7 @@ export const CoursesView = ({ setActiveTab }) => {
                     placeholder="CS-OS301"
                     value={subjectFormData.code}
                     onChange={(e) => setSubjectFormData({ ...subjectFormData, code: e.target.value })}
+                    autoComplete="off"
                   />
                 </div>
 
@@ -277,6 +281,7 @@ export const CoursesView = ({ setActiveTab }) => {
                     placeholder="Vedant Wankhade"
                     value={subjectFormData.instructor}
                     onChange={(e) => setSubjectFormData({ ...subjectFormData, instructor: e.target.value })}
+                    autoComplete="off"
                   />
                 </div>
               </div>

@@ -98,7 +98,7 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="auth-form">
+        <form onSubmit={handleSubmit} className="auth-form" autoComplete="off">
           {mode === 'signup' && (
             <div className="auth-input-group">
               <label htmlFor="fullName">Full Name</label>
@@ -110,6 +110,10 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
                   placeholder="e.g. Vedant Wankhade"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck="false"
                   required
                 />
               </div>
@@ -126,6 +130,10 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
                 placeholder="vedant@studer.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
                 required
               />
             </div>
@@ -141,6 +149,10 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="new-password"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
                 required
               />
             </div>

@@ -260,7 +260,7 @@ export const TimetableView = () => {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="modal-body">
+            <form onSubmit={handleSubmit} className="modal-body" autoComplete="off">
               <div className="form-grid">
                 <div className="form-group">
                   <label>Select Course *</label>
@@ -277,7 +277,7 @@ export const TimetableView = () => {
                 <div className="form-group">
                   <label>Select Subject *</label>
                   {currentCourseSubjects.length === 0 ? (
-                    <input type="text" disabled value="No Subjects in Course (Add Subjects in Courses Tab)" />
+                    <input type="text" disabled value="No Subjects in Course (Add Subjects in Courses Tab)" autoComplete="off" />
                   ) : (
                     <select
                       value={formData.subjectName}
@@ -296,6 +296,7 @@ export const TimetableView = () => {
                     type="date"
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                    autoComplete="off"
                     required
                   />
                   {formData.date && (
@@ -310,6 +311,7 @@ export const TimetableView = () => {
                     placeholder="Vedant Wankhade"
                     value={formData.instructor}
                     onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
+                    autoComplete="off"
                   />
                 </div>
 
@@ -320,6 +322,7 @@ export const TimetableView = () => {
                     placeholder="09:00 AM"
                     value={formData.startTime}
                     onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
+                    autoComplete="off"
                   />
                 </div>
 
@@ -330,6 +333,7 @@ export const TimetableView = () => {
                     placeholder="10:30 AM"
                     value={formData.endTime}
                     onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
+                    autoComplete="off"
                   />
                 </div>
               </div>

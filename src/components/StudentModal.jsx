@@ -103,7 +103,7 @@ export const StudentModal = () => {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="modal-body">
+        <form onSubmit={handleSubmit} className="modal-body" autoComplete="off">
           <div className="form-grid">
             <div className="form-group">
               <label>Full Name *</label>
@@ -113,6 +113,7 @@ export const StudentModal = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className={errors.name ? 'input-error' : ''}
+                autoComplete="off"
               />
               {errors.name && <span className="error-message"><AlertCircle size={12} /> {errors.name}</span>}
             </div>
@@ -125,6 +126,7 @@ export const StudentModal = () => {
                 value={formData.rollNo}
                 onChange={(e) => setFormData({ ...formData, rollNo: e.target.value })}
                 className={errors.rollNo ? 'input-error' : ''}
+                autoComplete="off"
               />
               {errors.rollNo && <span className="error-message"><AlertCircle size={12} /> {errors.rollNo}</span>}
             </div>
@@ -137,6 +139,7 @@ export const StudentModal = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className={errors.email ? 'input-error' : ''}
+                autoComplete="off"
               />
               {errors.email && <span className="error-message"><AlertCircle size={12} /> {errors.email}</span>}
             </div>
@@ -148,6 +151,7 @@ export const StudentModal = () => {
                 placeholder="+91 98765 43210"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                autoComplete="off"
               />
             </div>
 
@@ -198,6 +202,7 @@ export const StudentModal = () => {
               placeholder="https://example.com/avatar.jpg"
               value={formData.avatar}
               onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
+              autoComplete="off"
             />
           </div>
 

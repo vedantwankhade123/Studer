@@ -21,6 +21,7 @@ export const FilterBar = () => {
           placeholder="Search by student name, roll no, email or course..."
           value={searchQuery}
           onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+          autoComplete="off"
         />
         {searchQuery && (
           <button className="clear-search-btn" onClick={() => dispatch(setSearchQuery(''))}>

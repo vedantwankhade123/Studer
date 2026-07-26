@@ -99,7 +99,7 @@ export const SettingsView = ({ currentUser }) => {
           </div>
         )}
 
-        <form id="profile-form" onSubmit={handleSave} className="profile-form-grid">
+        <form id="profile-form" onSubmit={handleSave} className="profile-form-grid" autoComplete="off">
           <div className="form-group">
             <label><User size={14} /> Name</label>
             <input
@@ -108,6 +108,7 @@ export const SettingsView = ({ currentUser }) => {
               value={isEditing ? tempData.name : profileData.name}
               onChange={(e) => setTempData({ ...tempData, name: e.target.value })}
               className={!isEditing ? 'disabled-input' : 'active-input'}
+              autoComplete="off"
             />
           </div>
 
@@ -119,6 +120,7 @@ export const SettingsView = ({ currentUser }) => {
               value={isEditing ? tempData.email : profileData.email}
               onChange={(e) => setTempData({ ...tempData, email: e.target.value })}
               className={!isEditing ? 'disabled-input' : 'active-input'}
+              autoComplete="off"
             />
           </div>
         </form>
