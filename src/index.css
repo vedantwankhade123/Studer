@@ -1836,8 +1836,8 @@ html, body {
   background: #ffffff;
   border-radius: 20px;
   width: 100%;
-  max-width: 420px;
-  padding: 2.25rem;
+  max-width: 350px;
+  padding: 1.85rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   position: relative;
   animation: authPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
