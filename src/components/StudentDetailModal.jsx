@@ -29,6 +29,15 @@ export const StudentDetailModal = () => {
     }
   };
 
+  const getInitials = (name) => {
+    if (!name) return 'ST';
+    const parts = name.trim().split(' ');
+    if (parts.length >= 2) {
+      return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+    }
+    return name.slice(0, 2).toUpperCase();
+  };
+
   return (
     <div className="modal-backdrop" onClick={handleClose}>
       <div className="modal-content detail-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -40,7 +49,11 @@ export const StudentDetailModal = () => {
         </div>
 
         <div className="detail-profile-header">
-          <img src={selectedStudent.avatar} alt={selectedStudent.name} className="detail-avatar" />
+          {selectedStudent.avatar ? (
+            <img src={selectedStudent.avatar} alt={selectedStudent.name} className="detail-avatar" />
+          ) : (
+            <div className="detail-avatar-initials">{getInitials(selectedStudent.name)}</div>
+          )}
           <div className="detail-header-text">
             <h2>{selectedStudent.name}</h2>
             <div className="detail-header-badges">

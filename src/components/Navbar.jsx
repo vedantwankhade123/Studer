@@ -1,10 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { openAddModal, resetToDefaultData } from '../features/students/studentsSlice';
-import { GraduationCap, UserPlus, RotateCcw } from 'lucide-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { openAddModal, clearAllStudents } from '../features/students/studentsSlice';
+import { GraduationCap, UserPlus, Trash2 } from 'lucide-react';
 
 export const Navbar = () => {
   const dispatch = useDispatch();
+  const studentsCount = useSelector((state) => state.students.list.length);
+
+  const handleClearAll = () => {
+    if (window.confirm('Are you sure you want to clear all student records?')) {
+      dispatch(clearAllStudents());
+    }
+  };
 
   return (
     <header className="navbar-container">
@@ -20,14 +27,16 @@ export const Navbar = () => {
         </div>
 
         <div className="navbar-actions">
-          <button 
-            className="btn btn-secondary" 
-            onClick={() => dispatch(resetToDefaultData())}
-            title="Reset data to initial sample dataset"
-          >
-            <RotateCcw size={16} />
-            <span>Reset Data</span>
-          </button>
+          {studentsCount > 0 && (
+            <button 
+              className="btn btn-secondary" 
+              onClick={handleClearAll}
+              title="Clear all student records"
+            >
+              <Trash2 size={16} />
+              <span>Clear All</span>
+            </button>
+          )}
           
           <button 
             className="btn btn-primary" 

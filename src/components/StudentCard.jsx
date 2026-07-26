@@ -5,7 +5,7 @@ import {
   openEditModal, 
   openDetailModal 
 } from '../features/students/studentsSlice';
-import { Eye, Edit3, Trash2, Mail, Phone, BookOpen, Star } from 'lucide-react';
+import { Eye, Edit3, Trash2, Mail, Phone, BookOpen, Star, User } from 'lucide-react';
 
 export const StudentCard = ({ student, viewMode }) => {
   const dispatch = useDispatch();
@@ -17,6 +17,15 @@ export const StudentCard = ({ student, viewMode }) => {
       case 'On Leave': return 'badge-status badge-leave';
       default: return 'badge-status';
     }
+  };
+
+  const getInitials = (name) => {
+    if (!name) return 'ST';
+    const parts = name.trim().split(' ');
+    if (parts.length >= 2) {
+      return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+    }
+    return name.slice(0, 2).toUpperCase();
   };
 
   const handleDelete = (e) => {
@@ -35,11 +44,18 @@ export const StudentCard = ({ student, viewMode }) => {
     dispatch(openDetailModal(student));
   };
 
+  const renderAvatar = (className) => {
+    if (student.avatar) {
+      return <img src={student.avatar} alt={student.name} className={className} onError={(e) => { e.target.style.display = 'none'; }} />;
+    }
+    return <div className={`avatar-initials ${className}`}>{getInitials(student.name)}</div>;
+  };
+
   if (viewMode === 'list') {
     return (
       <div className="student-list-item" onClick={handleView}>
         <div className="student-list-avatar">
-          <img src={student.avatar} alt={student.name} />
+          {renderAvatar("list-avatar-img")}
         </div>
         <div className="student-list-main">
           <div className="student-name-row">
@@ -80,7 +96,7 @@ export const StudentCard = ({ student, viewMode }) => {
 
       <div className="card-body">
         <div className="avatar-wrapper">
-          <img src={student.avatar} alt={student.name} className="student-avatar" />
+          {renderAvatar("student-avatar")}
         </div>
 
         <h3 className="student-name">{student.name}</h3>
@@ -91,10 +107,12 @@ export const StudentCard = ({ student, viewMode }) => {
             <Mail size={14} />
             <span>{student.email}</span>
           </div>
-          <div className="detail-item">
-            <Phone size={14} />
-            <span>{student.phone}</span>
-          </div>
+          {student.phone && (
+            <div className="detail-item">
+              <Phone size={14} />
+              <span>{student.phone}</span>
+            </div>
+          )}
         </div>
 
         <div className="card-footer-info">
@@ -107,13 +125,13 @@ export const StudentCard = ({ student, viewMode }) => {
 
       <div className="card-actions">
         <button className="btn-card-action" onClick={handleView}>
-          <Eye size={16} /> View
+          <Eye size={15} /> View
         </button>
         <button className="btn-card-action btn-edit" onClick={handleEdit}>
-          <Edit3 size={16} /> Edit
+          <Edit3 size={15} /> Edit
         </button>
         <button className="btn-card-action btn-delete" onClick={handleDelete}>
-          <Trash2 size={16} /> Delete
+          <Trash2 size={15} /> Delete
         </button>
       </div>
     </div>
