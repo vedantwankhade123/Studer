@@ -11,7 +11,7 @@ Studer provides a clean, intuitive interface for managing student records, cours
 - **Authentication** — Sign In / Sign Up with admin account management stored in localStorage.
 - **Student CRUD** — Add, Edit, Delete, and View student records with full form validation.
 - **Profile Images & Initials** — Display student profile photos when added, with automatic fallback to name initials.
-- **Real-Time Analytics** — Dashboard stats cards showing total enrolled, active students, and course count.
+- **Real-Time Stats** — Dashboard stats cards showing total enrolled, active students, and course count.
 - **Search & Filtering** — Live search by name, roll number, email, or course with course and status filter dropdowns.
 - **Lecture Calendar** — Interactive monthly calendar with date-based lecture scheduling and dot indicators for days with lectures.
 - **Auto-Sorted Timetable** — Lectures automatically arrange themselves chronologically by start time for any selected date.
@@ -165,7 +165,7 @@ Studer/
 │   │   ├── Sidebar.jsx        # Navigation sidebar
 │   │   ├── Navbar.jsx         # Top navigation bar
 │   │   ├── HeroBanner.jsx     # Dashboard welcome banner
-│   │   ├── StatsCards.jsx     # Analytics stat cards
+│   │   ├── StatsCards.jsx     # Dashboard stat cards
 │   │   ├── FilterBar.jsx      # Search & filter controls
 │   │   ├── StudentList.jsx    # Student directory list
 │   │   ├── StudentCard.jsx    # Individual student card
@@ -175,8 +175,7 @@ Studer/
 │   │   ├── CoursesView.jsx    # Courses & subjects manager
 │   │   ├── TimetableView.jsx  # Date-based timetable
 │   │   ├── RightWidget.jsx    # Calendar & attendance widget
-│   │   ├── SettingsView.jsx   # User settings page
-│   │   └── AnalyticsView.jsx  # Analytics dashboard
+│   │   └── SettingsView.jsx   # User settings page
 │   ├── features/
 │   │   ├── students/
 │   │   │   └── studentsSlice.js
