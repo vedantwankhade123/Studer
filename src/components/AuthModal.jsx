@@ -115,7 +115,7 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
                 <input
                   id="fullName"
                   type="text"
-                  placeholder="e.g. Sarah Jenkins"
+                  placeholder="e.g. Vedant Wankhade"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   required
@@ -131,7 +131,7 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
               <input
                 id="authEmail"
                 type="email"
-                placeholder="admin@studer.com"
+                placeholder="vedant@studer.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
