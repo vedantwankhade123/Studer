@@ -150,7 +150,7 @@ html, body {
 }
 
 .landing-cta-group {
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 .btn-hero-primary {
@@ -175,51 +175,57 @@ html, body {
   transform: translateY(-2px);
 }
 
-.landing-features-grid.three-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  width: 100%;
-  max-width: 900px;
-  margin-top: 1rem;
-}
-
-.feature-card.inline-card {
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
-  padding: 1.25rem 1.5rem;
+/* Feature Pills Row - Compact & Fit Width */
+.landing-features-pills-row {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 0.85rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.feature-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 14px;
+  font-family: var(--font-heading);
+  font-size: 0.925rem;
+  font-weight: 800;
+  width: fit-content;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
   transition: all 0.2s ease;
 }
 
-.feature-card.inline-card:hover {
+.feature-pill:hover {
   transform: translateY(-2px);
-  border-color: var(--border-hover);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
-.feature-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+.cyan-pill {
+  background: var(--pastel-cyan);
+  color: var(--pastel-cyan-text);
+  border: 1px solid rgba(13, 75, 80, 0.12);
+}
+
+.lavender-pill {
+  background: var(--pastel-lavender);
+  color: var(--pastel-lavender-text);
+  border: 1px solid rgba(55, 41, 99, 0.12);
+}
+
+.pink-pill {
+  background: var(--pastel-pink);
+  color: var(--pastel-pink-text);
+  border: 1px solid rgba(89, 29, 40, 0.12);
+}
+
+.pill-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-}
-
-.feature-card.inline-card h3 {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--text-main);
-  white-space: nowrap;
 }
 
 .landing-footer {

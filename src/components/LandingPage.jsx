@@ -32,27 +32,27 @@ export const LandingPage = ({ onSignIn }) => {
           </button>
         </div>
 
-        {/* Feature Grid - 3 Inline Cards */}
-        <div className="landing-features-grid three-cards">
-          <div className="feature-card inline-card">
-            <div className="feature-icon icon-cyan">
-              <Users size={22} />
+        {/* Feature Pills Row - Compact & Theme Colored */}
+        <div className="landing-features-pills-row">
+          <div className="feature-pill cyan-pill">
+            <div className="pill-icon">
+              <Users size={18} />
             </div>
-            <h3>Student Directory</h3>
+            <span>Student Directory</span>
           </div>
 
-          <div className="feature-card inline-card">
-            <div className="feature-icon icon-purple">
-              <BookOpen size={22} />
+          <div className="feature-pill lavender-pill">
+            <div className="pill-icon">
+              <BookOpen size={18} />
             </div>
-            <h3>Courses & Subjects</h3>
+            <span>Courses & Subjects</span>
           </div>
 
-          <div className="feature-card inline-card">
-            <div className="feature-icon icon-pink">
-              <Clock size={22} />
+          <div className="feature-pill pink-pill">
+            <div className="pill-icon">
+              <Clock size={18} />
             </div>
-            <h3>Class Timetable</h3>
+            <span>Class Timetable</span>
           </div>
         </div>
       </main>
