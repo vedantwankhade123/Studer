@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearAllStudents } from '../features/students/studentsSlice';
-import { Database, RotateCcw, ShieldCheck } from 'lucide-react';
+import { Database, RotateCcw, ShieldCheck, Server, HardDrive } from 'lucide-react';
 
 export const SettingsView = () => {
   const dispatch = useDispatch();
   const students = useSelector((state) => state.students.list);
+  const courses = useSelector((state) => state.courses.list);
+  const timetable = useSelector((state) => state.timetable.entries);
 
   const handleClearAll = () => {
     if (window.confirm('Are you sure you want to clear all student records from local storage?')) {
@@ -16,43 +18,77 @@ export const SettingsView = () => {
   return (
     <div className="settings-view-container">
       <div className="view-header">
-        <div>
-          <h2>System Settings & Preferences</h2>
-          <p>Configure application state, manage persistent storage, and inspect state schema.</p>
-        </div>
+        <h2>System Settings & Storage</h2>
+        <p>Manage application state persistence, data caches, and system architecture.</p>
       </div>
 
       <div className="settings-grid">
         <div className="settings-card">
           <div className="settings-card-header">
-            <Database size={20} className="settings-icon" />
-            <h4>System State Management</h4>
+            <div className="settings-icon-box cyan-icon">
+              <Database size={20} />
+            </div>
+            <div>
+              <h4>Data Storage & Cache</h4>
+              <p className="card-sub-text">Persistent state stored in browser LocalStorage</p>
+            </div>
           </div>
-          <p>Manage application state in memory and local storage persistence.</p>
+
+          <div className="settings-stats-list">
+            <div className="setting-info-row">
+              <span>Student Records Cached:</span>
+              <strong>{students.length} Records</strong>
+            </div>
+            <div className="setting-info-row">
+              <span>Courses Configured:</span>
+              <strong>{courses.length} Courses</strong>
+            </div>
+            <div className="setting-info-row">
+              <span>Timetable Lectures:</span>
+              <strong>{timetable.length} Lectures</strong>
+            </div>
+          </div>
 
           <div className="settings-action-row">
-            <div className="setting-info">
-              <strong>Total Cached Records</strong>
-              <span>{students.length} student records in <code>localStorage</code></span>
-            </div>
             <button className="btn btn-danger" onClick={handleClearAll}>
-              <RotateCcw size={14} /> Clear All Data
+              <RotateCcw size={15} /> Clear All Cached Data
             </button>
           </div>
         </div>
 
         <div className="settings-card">
           <div className="settings-card-header">
-            <ShieldCheck size={20} className="settings-icon" />
-            <h4>System Architecture</h4>
+            <div className="settings-icon-box lavender-icon">
+              <ShieldCheck size={20} />
+            </div>
+            <div>
+              <h4>Application Architecture</h4>
+              <p className="card-sub-text">Core technology stack & state engine</p>
+            </div>
           </div>
+
           <div className="redux-details-list">
             <div className="r-detail-item">
-              <span>Central Store Configured:</span>
-              <code>configureStore(&#123; reducer: &#123; students, courses, timetable &#125; &#125;)</code>
+              <div className="r-item-left">
+                <Server size={15} />
+                <span>Central State Store:</span>
+              </div>
+              <span className="status-badge-sm active">Configured</span>
             </div>
+
             <div className="r-detail-item">
-              <span>State Immutability:</span>
+              <div className="r-item-left">
+                <HardDrive size={15} />
+                <span>Persistence Engine:</span>
+              </div>
+              <span className="status-badge-sm active">LocalStorage Sync</span>
+            </div>
+
+            <div className="r-detail-item">
+              <div className="r-item-left">
+                <ShieldCheck size={15} />
+                <span>State Immutability:</span>
+              </div>
               <span className="status-badge-sm active">Active</span>
             </div>
           </div>
