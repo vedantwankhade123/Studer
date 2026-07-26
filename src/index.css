@@ -1,13 +1,7 @@
-/* ==========================================================================
-   STUDER - STUDENT MANAGEMENT SYSTEM
-   Full-Width Clean Light Theme System
-   ========================================================================== */
-
 :root {
   --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
 
-  /* Theme Palette */
   --bg-body: #f4f6fa;
   --bg-header: #f4f6fa;
   --bg-surface: #ffffff;
@@ -22,7 +16,6 @@
   --text-muted: #64748b;
   --text-dim: #94a3b8;
 
-  /* Pill & Accent Colors */
   --yellow-hero: #ffd358;
   --sidebar-active-pill: #ffd1d7;
   --sidebar-active-text: #1b1e32;
@@ -63,7 +56,6 @@ html, body {
   height: 100vh;
 }
 
-/* Full Width Dashboard Frame */
 .dashboard-frame {
   display: flex;
   width: 100%;
@@ -72,7 +64,6 @@ html, body {
   overflow: hidden;
 }
 
-/* LANDING PAGE STYLES */
 .landing-page-container {
   width: 100%;
   height: 100vh;
@@ -239,7 +230,6 @@ html, body {
   transform: translateY(-2px);
 }
 
-/* Feature Pills Row - Compact & Fit Width */
 .landing-features-pills-row {
   display: flex;
   align-items: center;
@@ -286,6 +276,11 @@ html, body {
   border: 1px solid rgba(89, 29, 40, 0.12);
 }
 
+.pink-pill .pill-icon {
+  background: var(--pastel-pink-text);
+  color: #ffffff;
+}
+
 .pill-icon {
   display: flex;
   align-items: center;
@@ -301,7 +296,6 @@ html, body {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Left Sidebar */
 .app-sidebar {
   width: 285px;
   height: 100vh;
@@ -459,10 +453,11 @@ html, body {
 }
 
 .signout-btn:hover {
-  opacity: 0.75;
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
 }
 
-/* Main Workspace Area */
 .dashboard-main-area {
   flex: 1;
   display: flex;
@@ -473,7 +468,6 @@ html, body {
   background-color: var(--bg-body);
 }
 
-/* Top Navbar with Page Title on Left */
 .top-navbar {
   height: 72px;
   padding: 0 2rem;
@@ -529,11 +523,15 @@ html, body {
   font-weight: 700;
 }
 
+.user-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
 .dropdown-arrow {
   color: var(--text-dim);
 }
 
-/* Dashboard Inner Canvas */
 .dashboard-content-canvas {
   flex: 1;
   padding: 2rem;
@@ -567,14 +565,12 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Top Banner Row */
 .top-banner-row {
   display: grid;
   grid-template-columns: 1fr 260px;
   gap: 1.5rem;
 }
 
-/* Hero Banner */
 .hero-banner {
   background: var(--yellow-hero);
   border-radius: 20px;
@@ -635,7 +631,6 @@ html, body {
   transform: translateY(-1px);
 }
 
-/* Stacked Metric Cards */
 .stats-column {
   display: flex;
   flex-direction: column;
@@ -677,7 +672,6 @@ html, body {
   opacity: 0.85;
 }
 
-/* Filter Bar Controls */
 .filter-bar {
   display: flex;
   align-items: center;
@@ -754,7 +748,6 @@ html, body {
   height: 100%;
 }
 
-/* Directory Empty State Centering */
 .empty-state-container {
   width: 100%;
   display: flex;
@@ -803,7 +796,6 @@ html, body {
   align-items: center;
 }
 
-/* Rows List View */
 .students-rows-view {
   display: flex;
   flex-direction: column;
@@ -928,7 +920,6 @@ html, body {
 .icon-btn.btn-edit:hover { background: #fef3c7; color: #b45309; }
 .icon-btn.btn-delete:hover { background: #fee2e2; color: #dc2626; }
 
-/* Right Widget Panel */
 .right-widget-panel {
   background: white;
   border: 1px solid var(--border-color);
@@ -1055,7 +1046,6 @@ html, body {
   background: white;
 }
 
-/* Attendance Inspector */
 .attendance-inspector {
   display: flex;
   flex-direction: column;
@@ -1179,7 +1169,6 @@ html, body {
 .status-btn.present { background: #dcfce7; color: #15803d; }
 .status-btn.absent { background: #fee2e2; color: #dc2626; }
 
-/* Button Design System */
 .btn {
   font-family: var(--font-family);
   font-size: 0.85rem;
@@ -1226,7 +1215,6 @@ html, body {
   color: white;
 }
 
-/* COURSES & CURRICULUM SECTION STYLES */
 .courses-view-container {
   display: flex;
   flex-direction: column;
@@ -1470,7 +1458,6 @@ html, body {
   display: block;
 }
 
-/* TIMETABLE DATE-BASED LAYOUT */
 .timetable-view-container {
   display: flex;
   flex-direction: column;
@@ -1489,7 +1476,6 @@ html, body {
   align-items: flex-start;
 }
 
-/* Calendar Panel (Left Side) */
 .tt-calendar-panel {
   min-width: 280px;
   width: 300px;
@@ -1554,7 +1540,6 @@ html, body {
   margin-top: 0.25rem;
 }
 
-/* Lectures Panel (Right Side) */
 .tt-lectures-panel {
   flex: 1;
   min-width: 0;
@@ -1626,7 +1611,6 @@ html, body {
   padding: 0.45rem 1rem;
 }
 
-/* Enhanced lecture card with timeline */
 .tt-lecture-enhanced {
   display: flex;
   flex-direction: row;
@@ -1757,7 +1741,6 @@ html, body {
   width: fit-content;
 }
 
-/* SETTINGS USER PROFILE FORM STYLES */
 .settings-profile-container.left-aligned {
   max-width: 760px;
   width: 100%;
@@ -1850,7 +1833,6 @@ html, body {
   box-shadow: 0 0 0 3px rgba(27, 30, 50, 0.08);
 }
 
-/* Modals */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -1944,7 +1926,6 @@ html, body {
   background: var(--bg-body);
 }
 
-/* Detail Modal */
 .detail-profile-header {
   display: flex;
   align-items: center;
@@ -2037,9 +2018,6 @@ html, body {
   color: var(--text-main);
 }
 
-/* ==========================================================================
-   AUTHENTICATION POPUP MODAL STYLES
-   ========================================================================== */
 .auth-modal-overlay {
   position: fixed;
   inset: 0;

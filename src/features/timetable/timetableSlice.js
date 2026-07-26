@@ -70,9 +70,6 @@ export const {
   closeAddTimetableModal 
 } = timetableSlice.actions;
 
-/**
- * Helper: get the day name (e.g. "Monday") from a date string "YYYY-MM-DD".
- */
 export const getDayNameFromDate = (dateStr) => {
   if (!dateStr) return '';
   const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -80,9 +77,6 @@ export const getDayNameFromDate = (dateStr) => {
   return dayNames[d.getDay()] || '';
 };
 
-/**
- * Helper: parse a 12-hour time string like "09:00 AM" into total minutes for sorting.
- */
 export const parseTimeToMinutes = (timeStr) => {
   if (!timeStr) return 0;
   const match = timeStr.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
@@ -95,23 +89,16 @@ export const parseTimeToMinutes = (timeStr) => {
   return hours * 60 + minutes;
 };
 
-/**
- * Selector: get lectures for a given date, matching by exact date OR by day-of-week,
- * sorted by start time.
- */
 export const selectLecturesForDate = (entries, dateStr) => {
   if (!dateStr) return [];
   const dayName = getDayNameFromDate(dateStr);
   
   const filtered = entries.filter((entry) => {
-    // Match by exact date (new format)
     if (entry.date === dateStr) return true;
-    // Match by day-of-week (legacy entries that only have `day`)
     if (!entry.date && entry.day === dayName) return true;
     return false;
   });
 
-  // Sort by start time
   return [...filtered].sort((a, b) => {
     return parseTimeToMinutes(a.startTime) - parseTimeToMinutes(b.startTime);
   });

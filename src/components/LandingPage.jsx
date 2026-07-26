@@ -14,7 +14,6 @@ export const LandingPage = ({ onSignIn }) => {
 
   return (
     <div className="landing-page-container">
-      {/* Landing Header */}
       <header className="landing-header">
         <div className="landing-brand">
           <div className="brand-logo-box">
@@ -30,7 +29,6 @@ export const LandingPage = ({ onSignIn }) => {
         </button>
       </header>
 
-      {/* Hero Section */}
       <main className="landing-hero-section">
         <h1 className="landing-title">
           Smart Academic Management,<br />
@@ -44,7 +42,6 @@ export const LandingPage = ({ onSignIn }) => {
           </button>
         </div>
 
-        {/* Feature Pills Row - Compact & Theme Colored */}
         <div className="landing-features-pills-row">
           <div className="feature-pill cyan-pill">
             <div className="pill-icon">
@@ -69,7 +66,6 @@ export const LandingPage = ({ onSignIn }) => {
         </div>
       </main>
 
-      {/* Authentication Popup Modal */}
       <AuthModal
         isOpen={isAuthOpen}
         onClose={() => setIsAuthOpen(false)}

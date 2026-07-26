@@ -11,7 +11,6 @@ export const StudentList = () => {
   const statusFilter = useSelector((state) => state.students.statusFilter || 'All');
   const courseFilter = useSelector((state) => state.students.courseFilter || 'All');
 
-  // Filter Logic
   const filteredStudents = students.filter((stu) => {
     const matchesSearch = 
       (stu.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||

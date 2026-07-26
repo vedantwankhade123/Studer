@@ -32,7 +32,6 @@ export const RightWidget = () => {
     setCurrentDateObj(new Date(year, month + 1, 1));
   };
 
-  // Generate days in month
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDayIndex = new Date(year, month, 1).getDay();
 
@@ -52,7 +51,6 @@ export const RightWidget = () => {
     dispatch(setSelectedDate(dateStr));
   };
 
-  // Check if a calendar day has lectures
   const dayHasLectures = (dayNum) => {
     const mm = String(month + 1).padStart(2, '0');
     const dd = String(dayNum).padStart(2, '0');
@@ -60,7 +58,6 @@ export const RightWidget = () => {
     return selectLecturesForDate(timetableEntries, dateStr).length > 0;
   };
 
-  // Filter and sort lectures for selected date
   const activeLectures = useMemo(
     () => selectLecturesForDate(timetableEntries, selectedDate),
     [timetableEntries, selectedDate]
@@ -68,7 +65,6 @@ export const RightWidget = () => {
 
   const selectedDayName = getDayNameFromDate(selectedDate);
 
-  // Format the date for display
   const formatDisplayDate = () => {
     if (!selectedDate) return '';
     const d = new Date(selectedDate + 'T00:00:00');
@@ -86,7 +82,6 @@ export const RightWidget = () => {
         </div>
       </div>
 
-      {/* Full Monthly Calendar Grid */}
       <div className="monthly-calendar-grid">
         <div className="cal-weekday-header">
           <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
@@ -115,7 +110,6 @@ export const RightWidget = () => {
         </div>
       </div>
 
-      {/* Lecture & Attendance Inspector for Selected Date */}
       <div className="attendance-inspector">
         <div className="inspector-header">
           <h5>{selectedDayName}, {formatDisplayDate()}</h5>

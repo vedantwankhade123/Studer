@@ -21,14 +21,12 @@ export const CoursesView = ({ setActiveTab }) => {
   const isAddSubjectModalOpen = useSelector((state) => state.courses.isAddSubjectModalOpen);
   const selectedCourseForSubject = useSelector((state) => state.courses.selectedCourseForSubject);
 
-  // New Course Form State
   const [courseFormData, setCourseFormData] = useState({
     name: '',
     code: '',
     department: 'Computer Science & Engineering',
   });
 
-  // New Subject Form State
   const [subjectFormData, setSubjectFormData] = useState({
     name: '',
     code: '',
@@ -119,7 +117,6 @@ export const CoursesView = ({ setActiveTab }) => {
                 </div>
               </div>
 
-              {/* Subjects List inside Course Card */}
               <div className="subjects-section-box">
                 <div className="subjects-header">
                   <span><Bookmark size={13} /> Course Subjects:</span>
@@ -177,7 +174,6 @@ export const CoursesView = ({ setActiveTab }) => {
         })}
       </div>
 
-      {/* Add Course Modal */}
       {isAddCourseModalOpen && (
         <div className="modal-backdrop" onClick={() => dispatch(closeAddCourseModal())}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -241,7 +237,6 @@ export const CoursesView = ({ setActiveTab }) => {
         </div>
       )}
 
-      {/* Add Subject to Course Modal */}
       {isAddSubjectModalOpen && selectedCourseForSubject && (
         <div className="modal-backdrop" onClick={() => dispatch(closeAddSubjectModal())}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

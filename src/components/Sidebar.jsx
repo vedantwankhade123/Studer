@@ -14,7 +14,6 @@ export const Sidebar = ({ activeTab, setActiveTab, onSignOut }) => {
   return (
     <aside className="app-sidebar">
       <div className="sidebar-top-section">
-        {/* Brand Header */}
         <div className="sidebar-brand">
           <div className="brand-logo-box">
             <BookOpen size={20} />
@@ -26,7 +25,6 @@ export const Sidebar = ({ activeTab, setActiveTab, onSignOut }) => {
           <img src={sheryiansLogo} alt="Sheryians Logo" className="sheryians-logo-img" />
         </div>
 
-        {/* Navigation Items */}
         <nav className="sidebar-nav">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -45,7 +43,6 @@ export const Sidebar = ({ activeTab, setActiveTab, onSignOut }) => {
         </nav>
       </div>
 
-      {/* Clean Red Sign Out Button */}
       <div className="sidebar-footer">
         <button 
           className="signout-btn" 

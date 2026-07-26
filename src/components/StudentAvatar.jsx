@@ -16,7 +16,6 @@ export const StudentAvatar = ({ student, className, initialsClassName, size = 's
       return cleanName.charAt(0).toUpperCase();
     }
 
-    // Double initials fallback
     const parts = cleanName.split(/\s+/);
     if (parts.length >= 2) {
       return `${parts[0][0]}${parts[1][0]}`.toUpperCase();

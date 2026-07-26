@@ -18,7 +18,6 @@ export const TimetableView = () => {
   const isAddModalOpen = useSelector((state) => state.timetable.isAddTimetableModalOpen);
   const selectedDate = useSelector((state) => state.timetable.selectedDate);
 
-  // Calendar state
   const selectedDateObj = useMemo(() => new Date(selectedDate + 'T00:00:00'), [selectedDate]);
   const [calMonth, setCalMonth] = useState(selectedDateObj.getMonth());
   const [calYear, setCalYear] = useState(selectedDateObj.getFullYear());
@@ -30,13 +29,11 @@ export const TimetableView = () => {
 
   const dayName = getDayNameFromDate(selectedDate);
 
-  // Lectures for selected date, auto-sorted by time
   const dayLectures = useMemo(
     () => selectLecturesForDate(timetableEntries, selectedDate),
     [timetableEntries, selectedDate]
   );
 
-  // Calendar generation
   const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
   const firstDayIndex = new Date(calYear, calMonth, 1).getDay();
   const calendarDays = [];
@@ -66,7 +63,6 @@ export const TimetableView = () => {
     dispatch(setSelectedDate(today.toISOString().split('T')[0]));
   };
 
-  // Check if a calendar day has lectures
   const dayHasLectures = (dayNum) => {
     const mm = String(calMonth + 1).padStart(2, '0');
     const dd = String(dayNum).padStart(2, '0');
@@ -74,7 +70,6 @@ export const TimetableView = () => {
     return selectLecturesForDate(timetableEntries, dateStr).length > 0;
   };
 
-  // Modal form state
   const firstCourse = courses[0] || { name: 'Computer Science', code: 'CS-101', subjects: [] };
   const firstSubject = firstCourse.subjects?.[0] || { name: 'Core Subject Lecture', code: 'CS-GEN' };
 
@@ -137,7 +132,6 @@ export const TimetableView = () => {
     dispatch(closeAddTimetableModal());
   };
 
-  // Format selected date for display
   const formatDisplayDate = (dateStr) => {
     if (!dateStr) return '';
     const d = new Date(dateStr + 'T00:00:00');
@@ -162,7 +156,6 @@ export const TimetableView = () => {
       </div>
 
       <div className="timetable-date-layout">
-        {/* Left: Calendar Date Picker */}
         <div className="tt-calendar-panel">
           <div className="tt-cal-header">
             <h4>Select Date</h4>
@@ -204,7 +197,6 @@ export const TimetableView = () => {
           </div>
         </div>
 
-        {/* Right: Lectures for Selected Date */}
         <div className="tt-lectures-panel">
           <div className="tt-lectures-header">
             <div className="tt-date-info">
@@ -258,7 +250,6 @@ export const TimetableView = () => {
         </div>
       </div>
 
-      {/* Add Timetable Entry Modal */}
       {isAddModalOpen && (
         <div className="modal-backdrop" onClick={() => dispatch(closeAddTimetableModal())}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

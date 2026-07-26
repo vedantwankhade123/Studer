@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, Mail, Lock, User, ArrowRight, AlertCircle } from 'lucide-react';
 
 export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }) => {
-  const [mode, setMode] = useState(defaultMode); // 'signin' | 'signup'
+  const [mode, setMode] = useState(defaultMode);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,7 +10,6 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
 
   if (!isOpen) return null;
 
-  // Retrieve stored admin accounts or initialize default admin
   const getStoredAdmins = () => {
     try {
       const saved = localStorage.getItem('studer_admins');
@@ -18,7 +17,6 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
     } catch (e) {
       console.error(e);
     }
-    // Default admin user
     return [{ fullName: 'Vedant Wankhade', email: 'admin@studer.com', password: 'admin' }];
   };
 
@@ -46,7 +44,6 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
         return;
       }
 
-      // Check if email already exists
       const existingUser = admins.find(a => a.email.toLowerCase() === trimmedEmail);
       if (existingUser) {
         setError('An account with this email already exists. Please Sign In.');
@@ -65,7 +62,6 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
       onSuccess({ fullName: newAdmin.fullName, email: newAdmin.email });
       onClose();
     } else {
-      // Sign In mode
       const matchedAdmin = admins.find(
         a => a.email.toLowerCase() === trimmedEmail && a.password === trimmedPassword
       );
@@ -87,17 +83,14 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
   return (
     <div className="auth-modal-overlay" onClick={onClose}>
       <div className="auth-modal-card" onClick={(e) => e.stopPropagation()}>
-        {/* Close Button */}
         <button className="auth-modal-close" onClick={onClose} aria-label="Close modal">
           <X size={18} />
         </button>
 
-        {/* Modal Header */}
         <div className="auth-modal-header">
           <h2>{mode === 'signin' ? 'Sign In to Studer' : 'Create Admin Account'}</h2>
         </div>
 
-        {/* Error Alert */}
         {error && (
           <div className="auth-error-alert">
             <AlertCircle size={16} />
@@ -105,7 +98,6 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
           </div>
         )}
 
-        {/* Auth Form */}
         <form onSubmit={handleSubmit} className="auth-form">
           {mode === 'signup' && (
             <div className="auth-input-group">
@@ -160,7 +152,6 @@ export const AuthModal = ({ isOpen, onClose, onSuccess, defaultMode = 'signin' }
           </button>
         </form>
 
-        {/* Footer Switcher */}
         <div className="auth-modal-footer">
           {mode === 'signin' ? (
             <p>
