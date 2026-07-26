@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSearchQuery } from '../features/students/studentsSlice';
-import { Search, ChevronDown } from 'lucide-react';
+import { Search, ChevronDown, GraduationCap } from 'lucide-react';
 
 export const Navbar = () => {
   const dispatch = useDispatch();

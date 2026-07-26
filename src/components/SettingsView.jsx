@@ -18,7 +18,7 @@ export const SettingsView = () => {
       <div className="view-header">
         <div>
           <h2>System Settings & Preferences</h2>
-          <p>Configure Redux store state, manage persistent storage, and inspect state schema.</p>
+          <p>Configure application state, manage persistent storage, and inspect state schema.</p>
         </div>
       </div>
 
@@ -26,7 +26,7 @@ export const SettingsView = () => {
         <div className="settings-card">
           <div className="settings-card-header">
             <Database size={20} className="settings-icon" />
-            <h4>Redux Store Management</h4>
+            <h4>System State Management</h4>
           </div>
           <p>Manage application state in memory and local storage persistence.</p>
 
@@ -44,20 +44,16 @@ export const SettingsView = () => {
         <div className="settings-card">
           <div className="settings-card-header">
             <ShieldCheck size={20} className="settings-icon" />
-            <h4>Redux Toolkit Architecture</h4>
+            <h4>System Architecture</h4>
           </div>
           <div className="redux-details-list">
             <div className="r-detail-item">
               <span>Central Store Configured:</span>
-              <code>configureStore(&#123; reducer: &#123; students &#125; &#125;)</code>
+              <code>configureStore(&#123; reducer: &#123; students, courses, timetable &#125; &#125;)</code>
             </div>
             <div className="r-detail-item">
-              <span>Active Redux Slice:</span>
-              <code>studentsSlice.js</code>
-            </div>
-            <div className="r-detail-item">
-              <span>Immer.js Immutability:</span>
-              <span className="status-badge-sm active">Enabled</span>
+              <span>State Immutability:</span>
+              <span className="status-badge-sm active">Active</span>
             </div>
           </div>
         </div>

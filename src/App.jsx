@@ -6,8 +6,8 @@ import { StatsCards } from './components/StatsCards';
 import { FilterBar } from './components/FilterBar';
 import { StudentList } from './components/StudentList';
 import { RightWidget } from './components/RightWidget';
-import { AnalyticsView } from './components/AnalyticsView';
 import { CoursesView } from './components/CoursesView';
+import { TimetableView } from './components/TimetableView';
 import { SettingsView } from './components/SettingsView';
 import { StudentModal } from './components/StudentModal';
 import { StudentDetailModal } from './components/StudentDetailModal';
@@ -49,17 +49,17 @@ export function App() {
           </div>
         );
 
-      case 'analytics':
-        return (
-          <div className="dashboard-content-canvas single-column-canvas">
-            <AnalyticsView />
-          </div>
-        );
-
       case 'courses':
         return (
           <div className="dashboard-content-canvas single-column-canvas">
             <CoursesView setActiveTab={setActiveTab} />
+          </div>
+        );
+
+      case 'timetable':
+        return (
+          <div className="dashboard-content-canvas single-column-canvas">
+            <TimetableView />
           </div>
         );
 

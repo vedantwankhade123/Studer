@@ -10,7 +10,7 @@ export const HeroBanner = () => {
     <div className="hero-banner">
       <div className="hero-content">
         <h2>Hello Sarah! <Sparkles size={20} className="sparkle-icon" /></h2>
-        <p>Welcome to the Redux Toolkit Student Management Portal. Manage student records, track performance metrics, and filter courses seamlessly.</p>
+        <p>Welcome to Studer Student Management Portal. Manage student records, track course schedules, and inspect lecture attendance seamlessly.</p>
         <button className="hero-cta-btn" onClick={() => dispatch(openAddModal())}>
           <UserPlus size={16} />
           <span>Add New Student</span>
@@ -19,11 +19,7 @@ export const HeroBanner = () => {
 
       <div className="hero-illustration">
         <div className="illustration-graphic">
-          <span className="graphic-badge">RTK Powered</span>
-          <div className="graphic-desk">
-            <div className="graphic-screen"></div>
-            <div className="graphic-chair"></div>
-          </div>
+          <span className="graphic-badge">Active Portal</span>
         </div>
       </div>
     </div>

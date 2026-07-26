@@ -107,11 +107,6 @@ export const StudentDetailModal = () => {
           </div>
         )}
 
-        <div className="detail-redux-indicator">
-          <ShieldCheck size={16} />
-          <span>State managed in Redux Store (Key: <code>students.selectedStudent</code>)</span>
-        </div>
-
         <div className="modal-footer">
           <button className="btn btn-secondary" onClick={handleClose}>
             Close

@@ -1,37 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCourseFilter } from '../features/students/studentsSlice';
-import { BookOpen, Users, Star, ArrowRight, Code, Database, Cpu, Laptop, Radio } from 'lucide-react';
+import { openAddCourseModal, closeAddCourseModal, addCourse as createCourseAction, deleteCourse } from '../features/courses/coursesSlice';
+import { BookOpen, Users, Star, ArrowRight, Plus, Trash2, X, CheckCircle, Code, Database, Cpu, Laptop, Radio } from 'lucide-react';
 
 export const CoursesView = ({ setActiveTab }) => {
   const dispatch = useDispatch();
   const students = useSelector((state) => state.students.list);
+  const coursesList = useSelector((state) => state.courses.list);
+  const isAddModalOpen = useSelector((state) => state.courses.isAddCourseModalOpen);
 
-  const courses = [
-    { name: 'Computer Science', code: 'CS-101', icon: Code, color: 'icon-purple', bg: 'var(--pastel-lavender)' },
-    { name: 'Data Science', code: 'DS-201', icon: Database, color: 'icon-blue', bg: 'var(--pastel-cyan)' },
-    { name: 'AI & ML', code: 'AI-301', icon: Cpu, color: 'icon-gold', bg: 'var(--yellow-hero)' },
-    { name: 'Information Technology', code: 'IT-102', icon: Laptop, color: 'icon-pink', bg: 'var(--pastel-pink)' },
-    { name: 'Electronics', code: 'EC-202', icon: Radio, color: 'icon-green', bg: '#dcfce7' },
-  ];
+  const [formData, setFormData] = useState({
+    name: '',
+    code: '',
+    instructor: '',
+    credits: 4,
+    department: 'Computer Science & Eng',
+  });
+
+  const [errors, setErrors] = useState({});
 
   const handleSelectCourse = (courseName) => {
     dispatch(setCourseFilter(courseName));
     setActiveTab('dashboard');
   };
 
+  const handleGoToTimetable = () => {
+    setActiveTab('timetable');
+  };
+
+  const handleSubmitCourse = (e) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.code.trim()) {
+      setErrors({ name: 'Course Name and Code are required' });
+      return;
+    }
+    dispatch(createCourseAction(formData));
+    dispatch(closeAddCourseModal());
+    setFormData({ name: '', code: '', instructor: '', credits: 4, department: 'Computer Science & Eng' });
+    setErrors({});
+  };
+
   return (
     <div className="courses-view-container">
-      <div className="view-header">
+      <div className="view-header flex-between">
         <div>
-          <h2>Academic Programs & Courses</h2>
-          <p>Explore departments and inspect student enrollments across programs.</p>
+          <h2>Academic Courses & Curriculum</h2>
+          <p>Create new courses, manage departments, and schedule timetables.</p>
+        </div>
+
+        <div className="header-btn-group">
+          <button className="btn btn-secondary" onClick={handleGoToTimetable}>
+            <span>Create Timetable</span>
+            <ArrowRight size={16} />
+          </button>
+
+          <button className="btn btn-primary" onClick={() => dispatch(openAddCourseModal())}>
+            <Plus size={16} />
+            <span>Add New Course</span>
+          </button>
         </div>
       </div>
 
       <div className="courses-grid">
-        {courses.map((course) => {
-          const Icon = course.icon;
+        {coursesList.map((course) => {
           const enrolled = students.filter(s => s.course === course.name);
           const count = enrolled.length;
           const avgGpa = count > 0 
@@ -39,21 +71,21 @@ export const CoursesView = ({ setActiveTab }) => {
             : 'N/A';
 
           return (
-            <div key={course.code} className="course-card">
+            <div key={course.id} className="course-card">
               <div className="course-card-top">
-                <div className={`course-icon-wrapper ${course.color}`}>
-                  <Icon size={24} />
+                <div className="course-icon-wrapper icon-purple">
+                  <BookOpen size={22} />
                 </div>
                 <span className="course-code-pill">{course.code}</span>
               </div>
 
               <h3>{course.name}</h3>
-              <p className="course-desc">Core curriculum focusing on practical industry skills and theoretical foundations.</p>
+              <p className="course-desc">Instructor: <strong>{course.instructor || 'Unassigned'}</strong> • {course.department}</p>
 
               <div className="course-stats-row">
                 <div className="c-stat">
                   <Users size={14} />
-                  <span><strong>{count}</strong> Enrolled</span>
+                  <span><strong>{count}</strong> Students</span>
                 </div>
                 <div className="c-stat">
                   <Star size={14} className="star-icon" />
@@ -61,17 +93,98 @@ export const CoursesView = ({ setActiveTab }) => {
                 </div>
               </div>
 
-              <button 
-                className="btn-view-students"
-                onClick={() => handleSelectCourse(course.name)}
-              >
-                <span>View Enrolled Students</span>
-                <ArrowRight size={14} />
-              </button>
+              <div className="course-card-actions-row">
+                <button 
+                  className="btn-view-students"
+                  onClick={() => handleSelectCourse(course.name)}
+                >
+                  <span>Inspect Enrolled</span>
+                  <ArrowRight size={14} />
+                </button>
+
+                <button 
+                  className="icon-btn btn-delete" 
+                  onClick={() => dispatch(deleteCourse(course.id))}
+                  title="Delete Course"
+                >
+                  <Trash2 size={14} />
+                </button>
+              </div>
             </div>
           );
         })}
       </div>
+
+      {/* Add Course Modal */}
+      {isAddModalOpen && (
+        <div className="modal-backdrop" onClick={() => dispatch(closeAddCourseModal())}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Create New Academic Course</h3>
+              <button className="close-btn" onClick={() => dispatch(closeAddCourseModal())}>
+                <X size={20} />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitCourse} className="modal-body">
+              <div className="form-grid">
+                <div className="form-group">
+                  <label>Course Title *</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Artificial Intelligence & Robotics"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                  {errors.name && <span className="error-message">{errors.name}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label>Course Code *</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. AI-401"
+                    value={formData.code}
+                    onChange={(e) => setFormData({ ...formData, code: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Faculty Instructor</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Dr. Ramesh Kumar"
+                    value={formData.instructor}
+                    onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Credits</label>
+                  <select
+                    value={formData.credits}
+                    onChange={(e) => setFormData({ ...formData, credits: Number(e.target.value) })}
+                  >
+                    <option value={2}>2 Credits</option>
+                    <option value={3}>3 Credits</option>
+                    <option value={4}>4 Credits</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => dispatch(closeAddCourseModal())}>
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  <CheckCircle size={16} />
+                  <span>Create Course</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

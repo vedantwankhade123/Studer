@@ -2,8 +2,8 @@ import React from 'react';
 import { 
   LayoutDashboard, 
   Users, 
-  BarChart3, 
   BookOpen, 
+  CalendarCheck, 
   Sliders, 
   GraduationCap 
 } from 'lucide-react';
@@ -12,8 +12,8 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'students', label: 'Students', icon: Users },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'courses', label: 'Courses', icon: BookOpen },
+    { id: 'timetable', label: 'Timetable', icon: CalendarCheck },
     { id: 'settings', label: 'Settings', icon: Sliders },
   ];
 
