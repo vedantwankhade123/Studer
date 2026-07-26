@@ -5,18 +5,18 @@ import { UserX, Plus, Edit2, Trash2, Eye } from 'lucide-react';
 
 export const StudentList = () => {
   const dispatch = useDispatch();
-  const students = useSelector((state) => state.students.list);
-  const search = useSelector((state) => state.students.filters.search);
-  const statusFilter = useSelector((state) => state.students.filters.status);
-  const courseFilter = useSelector((state) => state.students.filters.course);
+  const students = useSelector((state) => state.students.list || []);
+  const searchQuery = useSelector((state) => state.students.searchQuery || '');
+  const statusFilter = useSelector((state) => state.students.statusFilter || 'All');
+  const courseFilter = useSelector((state) => state.students.courseFilter || 'All');
 
   // Filter Logic
   const filteredStudents = students.filter((stu) => {
     const matchesSearch = 
-      stu.name.toLowerCase().includes(search.toLowerCase()) ||
-      stu.rollNumber.toLowerCase().includes(search.toLowerCase()) ||
-      stu.email.toLowerCase().includes(search.toLowerCase()) ||
-      stu.course.toLowerCase().includes(search.toLowerCase());
+      (stu.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (stu.rollNumber || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (stu.email || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (stu.course || '').toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesStatus = statusFilter === 'All' || stu.status === statusFilter;
     const matchesCourse = courseFilter === 'All' || stu.course === courseFilter;
@@ -57,7 +57,7 @@ export const StudentList = () => {
             {stu.photoUrl ? (
               <img src={stu.photoUrl} alt={stu.name} className="row-avatar-img" />
             ) : (
-              <div className="avatar-initials">{stu.name.charAt(0)}</div>
+              <div className="avatar-initials">{stu.name ? stu.name.charAt(0) : 'S'}</div>
             )}
           </div>
 
@@ -73,8 +73,8 @@ export const StudentList = () => {
           </div>
 
           <div className="row-stats-group">
-            <span className={`badge-status badge-${stu.status.toLowerCase()}`}>
-              {stu.status}
+            <span className={`badge-status badge-${(stu.status || 'Active').toLowerCase().replace(/\s+/g, '-')}`}>
+              {stu.status || 'Active'}
             </span>
 
             <div className="row-actions" onClick={(e) => e.stopPropagation()}>
