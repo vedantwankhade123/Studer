@@ -1912,19 +1912,27 @@ html, body {
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1.35rem;
 }
 
 .auth-input-group {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
 }
 
 .auth-input-group label {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #334155;
+  position: absolute;
+  top: -8px;
+  left: 14px;
+  background: #ffffff;
+  padding: 0 6px;
+  font-size: 0.725rem;
+  font-weight: 800;
+  color: #0f172a;
+  z-index: 5;
+  line-height: 1;
+  letter-spacing: 0.2px;
 }
 
 .auth-input-wrapper {
