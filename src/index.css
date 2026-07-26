@@ -892,28 +892,24 @@ html, body {
 .status-btn.present { background: #dcfce7; color: #15803d; }
 .status-btn.absent { background: #fee2e2; color: #dc2626; }
 
-/* Empty State Styling */
+/* Empty State Styling - Transparent without white box or faint red icon bg */
 .empty-state {
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
-  padding: 3.5rem 2rem;
+  background: transparent;
+  border: none;
+  padding: 2.5rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 1.25rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+  gap: 1rem;
+  box-shadow: none;
   margin: 1rem 0;
 }
 
 .empty-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  background: var(--pastel-pink);
-  color: var(--pastel-pink-text);
+  background: transparent;
+  color: var(--text-main);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -960,7 +956,7 @@ html, body {
 }
 
 .btn-secondary {
-  background: var(--bg-body);
+  background: white;
   color: var(--text-main);
   border: 1px solid var(--border-color);
 }
