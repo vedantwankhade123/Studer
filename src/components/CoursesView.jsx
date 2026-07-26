@@ -78,10 +78,6 @@ export const CoursesView = ({ setActiveTab }) => {
   return (
     <div className="courses-view-container">
       <div className="view-header flex-between">
-        <div>
-          <p className="view-sub-title">Manage Courses, add Subjects inside each course, and build class timetables.</p>
-        </div>
-
         <div className="header-btn-group">
           <button className="btn btn-secondary" onClick={handleGoToTimetable}>
             <span>Create Timetable</span>
