@@ -107,7 +107,7 @@ html, body {
 }
 
 .landing-hero-section {
-  max-width: 1100px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
   padding: 4rem 2rem;
@@ -138,7 +138,7 @@ html, body {
   color: var(--text-main);
   line-height: 1.15;
   max-width: 800px;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .landing-subtitle {
@@ -160,7 +160,7 @@ html, body {
   font-family: var(--font-family);
   font-size: 1rem;
   font-weight: 700;
-  padding: 0.85rem 2rem;
+  padding: 0.85rem 2.25rem;
   border-radius: 14px;
   cursor: pointer;
   display: inline-flex;
@@ -175,47 +175,51 @@ html, body {
   transform: translateY(-2px);
 }
 
-.landing-features-grid {
+.landing-features-grid.three-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
   width: 100%;
+  max-width: 900px;
   margin-top: 1rem;
 }
 
-.feature-card {
+.feature-card.inline-card {
   background: white;
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  padding: 1.75rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   gap: 0.85rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.feature-card.inline-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
 }
 
 .feature-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-.feature-card h3 {
+.feature-card.inline-card h3 {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--text-main);
-}
-
-.feature-card p {
-  font-size: 0.825rem;
-  color: var(--text-muted);
-  line-height: 1.45;
+  white-space: nowrap;
 }
 
 .landing-footer {

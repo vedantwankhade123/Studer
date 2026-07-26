@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Users, Clock, ShieldCheck, ArrowRight } from 'lucide-react';
+import { BookOpen, Users, Clock, ArrowRight } from 'lucide-react';
 
 export const LandingPage = ({ onSignIn }) => {
   return (
@@ -31,38 +31,27 @@ export const LandingPage = ({ onSignIn }) => {
           </button>
         </div>
 
-        {/* Feature Grid */}
-        <div className="landing-features-grid">
-          <div className="feature-card">
+        {/* Feature Grid - 3 Inline Cards */}
+        <div className="landing-features-grid three-cards">
+          <div className="feature-card inline-card">
             <div className="feature-icon icon-cyan">
-              <Users size={24} />
+              <Users size={22} />
             </div>
             <h3>Student Directory</h3>
-            <p>Maintain accurate student profiles, roll numbers, academic years, and enrollment statuses.</p>
           </div>
 
-          <div className="feature-card">
+          <div className="feature-card inline-card">
             <div className="feature-icon icon-purple">
-              <BookOpen size={24} />
+              <BookOpen size={22} />
             </div>
             <h3>Courses & Subjects</h3>
-            <p>Structure academic degree programs, departments, and course module subjects effortlessly.</p>
           </div>
 
-          <div className="feature-card">
+          <div className="feature-card inline-card">
             <div className="feature-icon icon-pink">
-              <Clock size={24} />
+              <Clock size={22} />
             </div>
             <h3>Class Timetable</h3>
-            <p>Visual day-by-day lecture scheduling with time slots, assigned instructors, and venues.</p>
-          </div>
-
-          <div className="feature-card">
-            <div className="feature-icon icon-cyan">
-              <ShieldCheck size={24} />
-            </div>
-            <h3>Attendance & Analytics</h3>
-            <p>Track daily attendance per lecture and view real-time enrollment statistics.</p>
           </div>
         </div>
       </main>
