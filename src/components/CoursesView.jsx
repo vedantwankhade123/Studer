@@ -79,8 +79,7 @@ export const CoursesView = ({ setActiveTab }) => {
     <div className="courses-view-container">
       <div className="view-header flex-between">
         <div>
-          <h2>Academic Courses & Subjects</h2>
-          <p>Manage Courses, add Subjects inside each course, and build class timetables.</p>
+          <p className="view-sub-title">Manage Courses, add Subjects inside each course, and build class timetables.</p>
         </div>
 
         <div className="header-btn-group">

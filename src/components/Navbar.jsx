@@ -1,11 +1,22 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 
-export const Navbar = () => {
+export const Navbar = ({ activeTab }) => {
+  const getPageTitle = () => {
+    switch (activeTab) {
+      case 'dashboard': return 'Dashboard';
+      case 'students': return 'Student Directory';
+      case 'courses': return 'Courses & Curriculum';
+      case 'timetable': return 'Class Timetable';
+      case 'settings': return 'System Settings';
+      default: return 'Dashboard';
+    }
+  };
+
   return (
     <header className="top-navbar">
-      <div className="navbar-left-brand-title">
-        {/* Clean top header space */}
+      <div className="navbar-page-title">
+        <h2>{getPageTitle()}</h2>
       </div>
 
       <div className="header-actions">

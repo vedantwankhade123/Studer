@@ -79,7 +79,7 @@ export function App() {
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="dashboard-main-area">
-        <Navbar />
+        <Navbar activeTab={activeTab} />
         {renderTabContent()}
       </div>
 
