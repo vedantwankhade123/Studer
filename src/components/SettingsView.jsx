@@ -1,18 +1,36 @@
-import React, { useState } from 'react';
-import { User, Mail, Shield, Building, Edit2, CheckCircle, Save, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { User, Mail, Edit2, CheckCircle, Save, X } from 'lucide-react';
 
-export const SettingsView = () => {
+export const SettingsView = ({ currentUser }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  const [profileData, setProfileData] = useState({
-    name: 'Vedant Wankhade',
-    email: 'vedant.wankhade@studer.edu',
-    role: 'Administrator',
-    department: 'Student Affairs & Registrar',
-  });
+  const getInitialUser = () => {
+    if (currentUser?.fullName && currentUser?.email) {
+      return { name: currentUser.fullName, email: currentUser.email };
+    }
+    try {
+      const saved = localStorage.getItem('studer_current_user');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed?.fullName && parsed?.email) {
+          return { name: parsed.fullName, email: parsed.email };
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    return { name: 'Vedant Wankhade', email: 'vedant@studer.com' };
+  };
 
-  const [tempData, setTempData] = useState({ ...profileData });
+  const [profileData, setProfileData] = useState(getInitialUser);
+  const [tempData, setTempData] = useState(getInitialUser);
+
+  useEffect(() => {
+    const user = getInitialUser();
+    setProfileData(user);
+    setTempData(user);
+  }, [currentUser]);
 
   const handleEditClick = () => {
     setTempData({ ...profileData });
@@ -28,6 +46,14 @@ export const SettingsView = () => {
   const handleSave = (e) => {
     e.preventDefault();
     setProfileData({ ...tempData });
+    try {
+      localStorage.setItem('studer_current_user', JSON.stringify({
+        fullName: tempData.name,
+        email: tempData.email,
+      }));
+    } catch (err) {
+      console.error(err);
+    }
     setIsEditing(false);
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 4000);
@@ -40,7 +66,6 @@ export const SettingsView = () => {
           <div className="profile-header-left">
             <div className="profile-header-info">
               <h3>{profileData.name}</h3>
-              <span className="profile-role-badge">{profileData.role}</span>
             </div>
           </div>
 
@@ -91,28 +116,6 @@ export const SettingsView = () => {
               disabled={!isEditing}
               value={isEditing ? tempData.email : profileData.email}
               onChange={(e) => setTempData({ ...tempData, email: e.target.value })}
-              className={!isEditing ? 'disabled-input' : 'active-input'}
-            />
-          </div>
-
-          <div className="form-group">
-            <label><Shield size={14} /> Role</label>
-            <input
-              type="text"
-              disabled={!isEditing}
-              value={isEditing ? tempData.role : profileData.role}
-              onChange={(e) => setTempData({ ...tempData, role: e.target.value })}
-              className={!isEditing ? 'disabled-input' : 'active-input'}
-            />
-          </div>
-
-          <div className="form-group">
-            <label><Building size={14} /> Department</label>
-            <input
-              type="text"
-              disabled={!isEditing}
-              value={isEditing ? tempData.department : profileData.department}
-              onChange={(e) => setTempData({ ...tempData, department: e.target.value })}
               className={!isEditing ? 'disabled-input' : 'active-input'}
             />
           </div>

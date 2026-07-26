@@ -92,7 +92,7 @@ export function App() {
       case 'settings':
         return (
           <div className="dashboard-content-canvas single-column-canvas">
-            <SettingsView />
+            <SettingsView currentUser={currentUser} />
           </div>
         );
 
