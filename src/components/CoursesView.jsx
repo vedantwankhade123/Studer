@@ -25,7 +25,7 @@ export const CoursesView = ({ setActiveTab }) => {
   const [courseFormData, setCourseFormData] = useState({
     name: '',
     code: '',
-    department: 'Computer Science & Eng',
+    department: 'Computer Science & Engineering',
   });
 
   // New Subject Form State
@@ -54,7 +54,7 @@ export const CoursesView = ({ setActiveTab }) => {
     }
     dispatch(createCourseAction(courseFormData));
     dispatch(closeAddCourseModal());
-    setCourseFormData({ name: '', code: '', department: 'Computer Science & Eng' });
+    setCourseFormData({ name: '', code: '', department: 'Computer Science & Engineering' });
     setErrors({});
   };
 
@@ -194,7 +194,7 @@ export const CoursesView = ({ setActiveTab }) => {
                   <label>Course Title *</label>
                   <input
                     type="text"
-                    placeholder="e.g. Artificial Intelligence & Robotics"
+                    placeholder="Artificial Intelligence & Robotics"
                     value={courseFormData.name}
                     onChange={(e) => setCourseFormData({ ...courseFormData, name: e.target.value })}
                   />
@@ -205,20 +205,25 @@ export const CoursesView = ({ setActiveTab }) => {
                   <label>Course Code *</label>
                   <input
                     type="text"
-                    placeholder="e.g. AI-401"
+                    placeholder="AI-401"
                     value={courseFormData.code}
                     onChange={(e) => setCourseFormData({ ...courseFormData, code: e.target.value })}
                   />
                 </div>
 
                 <div className="form-group full-width">
-                  <label>Department / Faculty</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Department of Computer Engineering"
+                  <label>Department *</label>
+                  <select
                     value={courseFormData.department}
                     onChange={(e) => setCourseFormData({ ...courseFormData, department: e.target.value })}
-                  />
+                  >
+                    <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                    <option value="Data Science & Analytics">Data Science & Analytics</option>
+                    <option value="Artificial Intelligence & ML">Artificial Intelligence & ML</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Electronics & Communication">Electronics & Communication</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                  </select>
                 </div>
               </div>
 
@@ -253,7 +258,7 @@ export const CoursesView = ({ setActiveTab }) => {
                   <label>Subject Name *</label>
                   <input
                     type="text"
-                    placeholder="e.g. Operating Systems & Kernel Design"
+                    placeholder="Operating Systems & Kernel Design"
                     value={subjectFormData.name}
                     onChange={(e) => setSubjectFormData({ ...subjectFormData, name: e.target.value })}
                   />
@@ -264,7 +269,7 @@ export const CoursesView = ({ setActiveTab }) => {
                   <label>Subject Code *</label>
                   <input
                     type="text"
-                    placeholder="e.g. CS-OS301"
+                    placeholder="CS-OS301"
                     value={subjectFormData.code}
                     onChange={(e) => setSubjectFormData({ ...subjectFormData, code: e.target.value })}
                   />
@@ -274,7 +279,7 @@ export const CoursesView = ({ setActiveTab }) => {
                   <label>Subject Instructor / Lecturer</label>
                   <input
                     type="text"
-                    placeholder="e.g. Dr. A. Sharma"
+                    placeholder="Dr. A. Sharma"
                     value={subjectFormData.instructor}
                     onChange={(e) => setSubjectFormData({ ...subjectFormData, instructor: e.target.value })}
                   />
