@@ -1,36 +1,31 @@
 import React from 'react';
-import { 
-  LayoutDashboard, 
-  Users, 
-  BookOpen, 
-  CalendarCheck, 
-  Sliders, 
-  GraduationCap 
-} from 'lucide-react';
+import { LayoutDashboard, Users, BookOpen, Clock, Settings, LogOut } from 'lucide-react';
 
 export const Sidebar = ({ activeTab, setActiveTab }) => {
-  const menuItems = [
+  const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'students', label: 'Students', icon: Users },
     { id: 'courses', label: 'Courses', icon: BookOpen },
-    { id: 'timetable', label: 'Timetable', icon: CalendarCheck },
-    { id: 'settings', label: 'Settings', icon: Sliders },
+    { id: 'timetable', label: 'Timetable', icon: Clock },
+    { id: 'settings', label: 'Settings', icon: Settings },
   ];
 
   return (
     <aside className="app-sidebar">
       <div className="sidebar-top-section">
+        {/* Brand Header */}
         <div className="sidebar-brand">
           <div className="brand-logo-box">
-            <GraduationCap size={24} />
+            <BookOpen size={22} />
           </div>
           <div className="brand-text">
             <h2>Studer</h2>
           </div>
         </div>
 
+        {/* Navigation Items */}
         <nav className="sidebar-nav">
-          {menuItems.map((item) => {
+          {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             return (
@@ -47,8 +42,19 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
         </nav>
       </div>
 
+      {/* Clean Red Sign Out Button without Background */}
       <div className="sidebar-footer">
-        <span className="version-tag">Version 1.0.1</span>
+        <button 
+          className="signout-btn" 
+          onClick={() => {
+            if (window.confirm('Are you sure you want to sign out?')) {
+              window.location.reload();
+            }
+          }}
+        >
+          <LogOut size={18} />
+          <span>Sign Out</span>
+        </button>
       </div>
     </aside>
   );

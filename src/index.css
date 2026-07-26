@@ -153,12 +153,28 @@ html, body {
 
 .sidebar-footer {
   padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
 }
 
-.version-tag {
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  font-weight: 600;
+.signout-btn {
+  background: transparent;
+  border: none;
+  color: #dc2626;
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  transition: opacity 0.2s ease;
+  width: 100%;
+}
+
+.signout-btn:hover {
+  opacity: 0.75;
 }
 
 /* Main Workspace Area */
