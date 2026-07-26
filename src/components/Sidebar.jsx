@@ -19,32 +19,34 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
 
   return (
     <aside className="app-sidebar">
-      <div className="sidebar-brand">
-        <div className="brand-logo-box">
-          <GraduationCap size={24} />
+      <div className="sidebar-top-section">
+        <div className="sidebar-brand">
+          <div className="brand-logo-box">
+            <GraduationCap size={24} />
+          </div>
+          <div className="brand-text">
+            <h2>Studer</h2>
+            <span>Management</span>
+          </div>
         </div>
-        <div className="brand-text">
-          <h2>Studer</h2>
-          <span>Management</span>
-        </div>
-      </div>
 
-      <nav className="sidebar-nav">
-        {menuItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeTab === item.id;
-          return (
-            <button
-              key={item.id}
-              className={`nav-item ${isActive ? 'active' : ''}`}
-              onClick={() => setActiveTab(item.id)}
-            >
-              <Icon size={18} />
-              <span>{item.label}</span>
-            </button>
-          );
-        })}
-      </nav>
+        <nav className="sidebar-nav">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                className={`nav-item ${isActive ? 'active' : ''}`}
+                onClick={() => setActiveTab(item.id)}
+              >
+                <Icon size={18} />
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
+      </div>
 
       <div className="sidebar-footer">
         <span className="version-tag">Version 1.0.1</span>
