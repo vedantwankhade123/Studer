@@ -109,7 +109,7 @@ export const StudentModal = () => {
               <label>Full Name *</label>
               <input
                 type="text"
-                placeholder="e.g. Aarav Sharma"
+                placeholder="Vedant Wankhade"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className={errors.name ? 'input-error' : ''}
@@ -118,10 +118,10 @@ export const StudentModal = () => {
             </div>
 
             <div className="form-group">
-              <label>Roll / Student ID *</label>
+              <label>Roll No *</label>
               <input
                 type="text"
-                placeholder="e.g. CS2024-042"
+                placeholder="CS2026-12"
                 value={formData.rollNo}
                 onChange={(e) => setFormData({ ...formData, rollNo: e.target.value })}
                 className={errors.rollNo ? 'input-error' : ''}
@@ -133,7 +133,7 @@ export const StudentModal = () => {
               <label>Email Address *</label>
               <input
                 type="email"
-                placeholder="e.g. aarav@example.com"
+                placeholder="vedant.wankhade@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className={errors.email ? 'input-error' : ''}
@@ -145,7 +145,7 @@ export const StudentModal = () => {
               <label>Phone Number</label>
               <input
                 type="text"
-                placeholder="e.g. +91 98765 43210"
+                placeholder="+91 98765 43210"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               />
@@ -192,10 +192,10 @@ export const StudentModal = () => {
           </div>
 
           <div className="form-group full-width">
-            <label>Student Avatar Image URL (Optional)</label>
+            <label>Profile Image URL (Optional)</label>
             <input
               type="url"
-              placeholder="https://example.com/photo.jpg (Leave blank for auto-generated avatar)"
+              placeholder="https://example.com/avatar.jpg"
               value={formData.avatar}
               onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
             />
