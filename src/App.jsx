@@ -17,12 +17,12 @@ export function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const saved = localStorage.getItem('studer_auth');
-    return saved !== null ? JSON.parse(saved) : true;
+    return saved !== null ? JSON.parse(saved) : false;
   });
 
   const [currentUser, setCurrentUser] = useState(() => {
     const saved = localStorage.getItem('studer_current_user');
-    return saved ? JSON.parse(saved) : { fullName: 'Vedant Wankhade', email: 'admin@studer.com' };
+    return saved ? JSON.parse(saved) : { fullName: 'Vedant Wankhade', email: 'vedant@studer.com' };
   });
 
   const handleSignIn = (userData) => {
