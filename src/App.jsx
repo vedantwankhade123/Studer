@@ -14,7 +14,6 @@ import { StudentDetailModal } from './components/StudentDetailModal';
 
 export function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [viewMode, setViewMode] = useState('list');
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -28,8 +27,8 @@ export function App() {
               </div>
 
               <div className="directory-section">
-                <FilterBar viewMode={viewMode} setViewMode={setViewMode} />
-                <StudentList viewMode={viewMode} />
+                <FilterBar />
+                <StudentList />
               </div>
             </div>
 
@@ -43,8 +42,8 @@ export function App() {
         return (
           <div className="dashboard-content-canvas single-column-canvas">
             <div className="directory-section full-width-directory">
-              <FilterBar viewMode={viewMode} setViewMode={setViewMode} />
-              <StudentList viewMode={viewMode} />
+              <FilterBar />
+              <StudentList />
             </div>
           </div>
         );

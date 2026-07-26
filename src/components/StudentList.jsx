@@ -4,7 +4,7 @@ import { StudentCard } from './StudentCard';
 import { openAddModal, clearFilters } from '../features/students/studentsSlice';
 import { UserX, Plus } from 'lucide-react';
 
-export const StudentList = ({ viewMode }) => {
+export const StudentList = () => {
   const dispatch = useDispatch();
 
   const { list, searchQuery, courseFilter, statusFilter } = useSelector((state) => state.students);
@@ -51,9 +51,9 @@ export const StudentList = ({ viewMode }) => {
         <span className="info-text">Showing {filteredStudents.length} of {list.length} total</span>
       </div>
 
-      <div className={viewMode === 'grid' ? 'students-grid' : 'students-rows-view'}>
+      <div className="students-rows-view">
         {filteredStudents.map((student, idx) => (
-          <StudentCard key={student.id} student={student} viewMode={viewMode} index={idx} />
+          <StudentCard key={student.id} student={student} viewMode="list" index={idx} />
         ))}
       </div>
     </div>
