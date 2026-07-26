@@ -21,7 +21,8 @@ export const LandingPage = ({ onSignIn }) => {
       {/* Hero Section */}
       <main className="landing-hero-section">
         <h1 className="landing-title">
-          Student & Academic Management System
+          Smart Academic Management,<br />
+          Simplified for Students, Courses & Schedules.
         </h1>
 
         <div className="landing-cta-group">
