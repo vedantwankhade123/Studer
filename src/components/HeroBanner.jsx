@@ -16,12 +16,6 @@ export const HeroBanner = () => {
           <span>Add New Student</span>
         </button>
       </div>
-
-      <div className="hero-illustration">
-        <div className="illustration-graphic">
-          <span className="graphic-badge">Active Portal</span>
-        </div>
-      </div>
     </div>
   );
 };
