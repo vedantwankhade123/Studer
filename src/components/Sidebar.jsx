@@ -1,7 +1,7 @@
 import React from 'react';
 import { LayoutDashboard, Users, BookOpen, Clock, Settings, LogOut } from 'lucide-react';
 
-export const Sidebar = ({ activeTab, setActiveTab }) => {
+export const Sidebar = ({ activeTab, setActiveTab, onSignOut }) => {
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'students', label: 'Students', icon: Users },
@@ -42,13 +42,13 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
         </nav>
       </div>
 
-      {/* Clean Red Sign Out Button without Background */}
+      {/* Clean Red Sign Out Button */}
       <div className="sidebar-footer">
         <button 
           className="signout-btn" 
           onClick={() => {
             if (window.confirm('Are you sure you want to sign out?')) {
-              window.location.reload();
+              onSignOut();
             }
           }}
         >

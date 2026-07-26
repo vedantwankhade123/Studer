@@ -1,56 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialSampleSchedule = [
-  {
-    id: 'TT-101',
-    courseName: 'Computer Science',
-    courseCode: 'CS-101',
-    subjectName: 'Data Structures & Algorithms',
-    subjectCode: 'CS-DSA',
-    day: 'Monday',
-    startTime: '09:00 AM',
-    endTime: '10:30 AM',
-    instructor: 'Dr. A. Sharma',
-    lectureTitle: 'Data Structures & Algorithms',
-    date: new Date().toISOString().split('T')[0],
-    attendanceRecords: {}
-  },
-  {
-    id: 'TT-102',
-    courseName: 'Data Science',
-    courseCode: 'DS-201',
-    subjectName: 'Python Data Pipelines & Pandas',
-    subjectCode: 'DS-PY',
-    day: 'Monday',
-    startTime: '11:00 AM',
-    endTime: '12:30 PM',
-    instructor: 'Prof. R. Verma',
-    lectureTitle: 'Python Data Pipelines & Pandas',
-    date: new Date().toISOString().split('T')[0],
-    attendanceRecords: {}
-  },
-  {
-    id: 'TT-103',
-    courseName: 'AI & ML',
-    courseCode: 'AI-301',
-    subjectName: 'Neural Networks & Deep Learning',
-    subjectCode: 'AI-NN',
-    day: 'Tuesday',
-    startTime: '02:00 PM',
-    endTime: '03:30 PM',
-    instructor: 'Dr. K. Mehta',
-    lectureTitle: 'Neural Networks & Deep Learning',
-    date: new Date().toISOString().split('T')[0],
-    attendanceRecords: {}
-  }
-];
-
 const loadSavedSchedule = () => {
   try {
     const saved = localStorage.getItem('studer_timetable');
-    return saved ? JSON.parse(saved) : initialSampleSchedule;
+    return saved ? JSON.parse(saved) : [];
   } catch (e) {
-    return initialSampleSchedule;
+    return [];
   }
 };
 

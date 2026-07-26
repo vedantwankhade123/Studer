@@ -11,9 +11,28 @@ import { TimetableView } from './components/TimetableView';
 import { SettingsView } from './components/SettingsView';
 import { StudentModal } from './components/StudentModal';
 import { StudentDetailModal } from './components/StudentDetailModal';
+import { LandingPage } from './components/LandingPage';
 
 export function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const saved = localStorage.getItem('studer_auth');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
+
+  const handleSignIn = () => {
+    localStorage.setItem('studer_auth', JSON.stringify(true));
+    setIsAuthenticated(true);
+  };
+
+  const handleSignOut = () => {
+    localStorage.setItem('studer_auth', JSON.stringify(false));
+    setIsAuthenticated(false);
+  };
+
+  if (!isAuthenticated) {
+    return <LandingPage onSignIn={handleSignIn} />;
+  }
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -76,7 +95,7 @@ export function App() {
 
   return (
     <div className="dashboard-frame">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onSignOut={handleSignOut} />
 
       <div className="dashboard-main-area">
         <Navbar activeTab={activeTab} />
