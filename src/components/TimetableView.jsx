@@ -179,7 +179,7 @@ export const TimetableView = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Instructor Name</label>
+                  <label>Instructor</label>
                   <input
                     type="text"
                     placeholder="Vedant Wankhade"

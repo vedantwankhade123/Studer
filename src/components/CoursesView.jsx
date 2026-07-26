@@ -276,7 +276,7 @@ export const CoursesView = ({ setActiveTab }) => {
                 </div>
 
                 <div className="form-group full-width">
-                  <label>Subject Instructor / Lecturer</label>
+                  <label>Instructor</label>
                   <input
                     type="text"
                     placeholder="Vedant Wankhade"
