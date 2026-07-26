@@ -17,11 +17,6 @@ export const SettingsView = () => {
 
   return (
     <div className="settings-view-container">
-      <div className="view-header">
-        <h2>System Settings & Storage</h2>
-        <p>Manage application state persistence, data caches, and system architecture.</p>
-      </div>
-
       <div className="settings-grid">
         <div className="settings-card">
           <div className="settings-card-header">
