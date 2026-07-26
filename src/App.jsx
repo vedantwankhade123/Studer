@@ -57,7 +57,7 @@ export function App() {
 
       case 'timetable':
         return (
-          <div className="dashboard-content-canvas single-column-canvas">
+          <div className="dashboard-content-canvas single-column-canvas timetable-canvas-full">
             <TimetableView />
           </div>
         );
