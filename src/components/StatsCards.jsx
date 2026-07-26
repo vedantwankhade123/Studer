@@ -1,13 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Users, UserCheck, GraduationCap } from 'lucide-react';
+import { Users, UserCheck, BookOpen } from 'lucide-react';
 
 export const StatsCards = () => {
   const students = useSelector((state) => state.students.list);
+  const courses = useSelector((state) => state.courses.list);
 
   const totalStudents = students.length;
   const activeStudents = students.filter((s) => s.status === 'Active').length;
-  const graduatedStudents = students.filter((s) => s.status === 'Graduated').length;
+  const totalCourses = courses.length;
 
   return (
     <div className="stats-column">
@@ -33,11 +34,11 @@ export const StatsCards = () => {
 
       <div className="stat-card pink-card">
         <div className="stat-card-icon">
-          <GraduationCap size={20} />
+          <BookOpen size={20} />
         </div>
         <div className="stat-card-data">
-          <h3>{graduatedStudents}</h3>
-          <span>Graduated Alumni</span>
+          <h3>{totalCourses}</h3>
+          <span>No of Courses</span>
         </div>
       </div>
     </div>

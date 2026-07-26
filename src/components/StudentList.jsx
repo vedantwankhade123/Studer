@@ -26,10 +26,9 @@ export const StudentList = ({ viewMode }) => {
     return (
       <div className="empty-state">
         <div className="empty-icon">
-          <UserX size={40} />
+          <UserX size={36} />
         </div>
-        <h3>No Students Directory Items</h3>
-        <p>No student records match your current search and filter criteria.</p>
+        <h3>No student found</h3>
         <div className="empty-actions">
           {(searchQuery || courseFilter !== 'All' || statusFilter !== 'All') ? (
             <button className="btn btn-secondary" onClick={() => dispatch(clearFilters())}>
